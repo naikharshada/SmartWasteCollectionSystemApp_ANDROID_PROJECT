@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:focusableInTouchMode="true"
+    android:background="@color/login_bk_color"
+    android:gravity="center"
+    tools:context=".ui.localuser.CategoryActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/loginViewsMargin"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="197dp">
+
+            <TextView
+                style="@style/viewParent.headerText.NoMode"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="Select \nwaste \nCategory" />
+
+            <ImageView
+                android:layout_width="179dp"
+                android:layout_height="227dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="21dp"
+                android:src="@drawable/green_plug_logo" />
+        </RelativeLayout>
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/dry_waste"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="65dp"
+                android:text="Dry Waste"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <RadioButton
+                android:id="@+id/wet_waste"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Wet Waste"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <RadioButton
+                android:id="@+id/electronic_waste"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Electronic Waste"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <RadioButton
+                android:id="@+id/not_known"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Not Known"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </RadioGroup>
+
+        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+            android:id="@+id/cirSubmitButton"
+            style="@style/loginButton"
+            android:layout_gravity="center"
+            android:layout_marginTop="65dp"
+            android:text="Submit"
+            app:initialCornerAngle="27dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="11dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_side_bg" />
+
+    <ImageView
+        android:id="@+id/back_Map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="11dp"
+        android:layout_marginBottom="20dp"
+        android:adjustViewBounds="false"
+        android:src="@drawable/ic_back_img" />
+
+</RelativeLayout>
+
+

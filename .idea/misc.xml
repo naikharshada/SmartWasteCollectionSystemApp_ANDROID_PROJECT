@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/button_background_blue.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_add_img.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_back_img.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_google_plus.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_login_hero.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_register_hero.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_side_bg.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_category.xml" value="0.264" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_click_picture.xml" value="0.2" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_forgot_pass.xml" value="0.264" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_forgot_pass1.xml" value="0.264" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_home_page.xml" value="0.2421875" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_home_page1.xml" value="0.2421875" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_login1.xml" value="0.2421875" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_login_as.xml" value="0.2421875" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_map.xml" value="0.2421875" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_new.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_register1.xml" value="0.2421875" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/fragment_one.xml" value="0.264" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/fragment_two.xml" value="0.264" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/xml/file_paths.xml" value="0.2421875" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

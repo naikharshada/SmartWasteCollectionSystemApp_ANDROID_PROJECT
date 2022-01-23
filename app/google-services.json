@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "250276089837",
+    "project_id": "smartwastecollectionsyst-69cbc",
+    "storage_bucket": "smartwastecollectionsyst-69cbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250276089837:android:d9185b1c2064101a5ea1e4",
+        "android_client_info": {
+          "package_name": "coding.insight.cleanuiloginregister"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250276089837-vsqu4l1sv492rlrbamtppadp9sfk50vt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEEwIkvHn4VG7cHJi-ZWY0uzJ84UCFdlg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250276089837-vsqu4l1sv492rlrbamtppadp9sfk50vt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
