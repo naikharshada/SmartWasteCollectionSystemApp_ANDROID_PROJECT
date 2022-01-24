@@ -10,7 +10,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.smartwastecollectionsystem.ui.authority.Login1Activity;
-import com.example.smartwastecollectionsystem.ui.localuser.HomePageActivity;
 import com.example.smartwastecollectionsystem.ui.localuser.LoginActivity;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
@@ -38,7 +37,7 @@ public class LoginAsActivity extends AppCompatActivity {
         municipalbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginAsActivity.this, Login1Activity.class));
+               startActivity(new Intent(LoginAsActivity.this, Login1Activity.class));
             }
         });
     }

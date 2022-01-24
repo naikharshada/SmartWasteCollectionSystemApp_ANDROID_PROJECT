@@ -9,8 +9,10 @@ public class UserData {
     private String Category;
     private double Longitude;
     private double Latitude;
+    private String Address;
+    private String Locality;
 
-    public UserData(String userId, String username, String email, String phone, String password, String category, double longitude, double latitude) {
+    public UserData(String userId, String username, String email, String phone, String password, String category, double longitude, double latitude, String address, String locality) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -19,10 +21,11 @@ public class UserData {
         Category = category;
         Longitude = longitude;
         Latitude = latitude;
+        Address = address;
+        Locality = locality;
     }
 
-
-    public UserData(String category) {
+    public UserData() {
     }
 
     public String getUserId() {
@@ -89,5 +92,20 @@ public class UserData {
         Latitude = latitude;
     }
 
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
+    public String getLocality() {
+        return Locality;
+    }
+
+    public void setLocality(String locality) {
+        Locality = locality;
+    }
 }
 

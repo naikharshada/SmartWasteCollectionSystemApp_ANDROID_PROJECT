@@ -13,10 +13,8 @@ import android.widget.Toast;
 
 import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,12 +30,10 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 public class HomePageActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private CircularProgressButton updatebtn;
     private FirebaseUser firebaseUser;
+    private CircularProgressButton updatebtn;
     private DatabaseReference databaseReference;
     private EditText na, em, ph, pa;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +54,7 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserData userData = snapshot.getValue(UserData.class);
-                assert userData != null;
+                assert userData!= null;
                 na.setText(userData.getUsername());
                 em.setText(userData.getEmail());
                 ph.setText(userData.getPhone());
@@ -69,6 +65,7 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(HomePageActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
 
             }
         });
@@ -139,8 +136,8 @@ public class HomePageActivity extends AppCompatActivity {
 
             }
         });
-    }
 
+    }
 
     private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -150,51 +147,4 @@ public class HomePageActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
         }
     }
-
-
- /*   public void update(View view) {
-        if (isNamechanged() || isEmailchanged() || isPhonechanged() || isPasschanged()) {
-            Toast.makeText(this, "Data has been updated", Toast.LENGTH_SHORT).show();
-        } else Toast.makeText(this, "Data is same and can not be updated", Toast.LENGTH_SHORT).show();
-    }
-
-    private boolean isPasschanged() {
-        if(!_pass.equals(pa.getText().toString())){
-            databaseReference.child(firebaseUser.getUid()).child("password").setValue(pa.getText().toString());
-            _pass = pa.getText().toString();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean isPhonechanged() {
-        if(!_phone.equals(ph.getText().toString())){
-            databaseReference.child(firebaseUser.getUid()).child("phone").setValue(ph.getText().toString());
-            _phone = ph.getText().toString();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean isEmailchanged() {
-        if(!_email.equals(em.getText().toString())){
-            databaseReference.child(firebaseUser.getUid()).child("email").setValue(em.getText().toString());
-            _email = em.getText().toString();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean isNamechanged() {
-        if(!_name.equals(na.getText().toString())){
-            databaseReference.child(firebaseUser.getUid()).child("username").setValue(na.getText().toString());
-            _name = na.getText().toString();
-            return true;
-        } else {
-            return false;
-        }
-    } */
 }
