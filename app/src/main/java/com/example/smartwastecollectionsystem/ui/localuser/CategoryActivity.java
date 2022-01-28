@@ -16,14 +16,18 @@ import android.widget.Toast;
 
 import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
@@ -32,10 +36,11 @@ public class CategoryActivity extends AppCompatActivity {
     private ImageView backtomap;
     private CircularProgressButton submit;
     private RadioGroup radioGroup;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
+    private FirebaseFirestore dbroot;
     private FirebaseAuth auth;
     private FirebaseUser firebaseUser;
+    String userID;
+
 
 
     @Override
@@ -51,6 +56,10 @@ public class CategoryActivity extends AppCompatActivity {
         // wet = findViewById(R.id.wet_waste);
         //electronic = findViewById(R.id.electronic_waste);
         //unknown = findViewById(R.id.not_known);
+        auth = FirebaseAuth.getInstance();
+        firebaseUser = auth.getCurrentUser();
+
+        dbroot = FirebaseFirestore.getInstance();
 
 
         backtomap.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +75,7 @@ public class CategoryActivity extends AppCompatActivity {
                 int selectedId = radioGroup.getCheckedRadioButtonId();
                 RadioButton selected_category = radioGroup.findViewById(selectedId);
 
-                if(selected_category == null){
+                if (selected_category == null) {
                     Snackbar snackbar = Snackbar.make(view, "Select Category",
                             Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
@@ -75,33 +84,29 @@ public class CategoryActivity extends AppCompatActivity {
                 } else {
                     final String category = selected_category.getText().toString();
                     //Toast.makeText(getApplicationContext(), category, Toast.LENGTH_SHORT).show();
-                   send(category);
+                    //insertdata();
+                    send(category);
                 }
-
-                //Toast.makeText(getApplicationContext(), radioButton.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void send(String category) {
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(auth.getCurrentUser().getUid());
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("Category", category);
-        databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        userID = auth.getCurrentUser().getUid();
+        Map<String,Object> User = new HashMap<>();
+        User.put("Category",category);
+        dbroot.collection("User").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(CategoryActivity.this, "Category successfully selected", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(CategoryActivity.this, "Category not selected", Toast.LENGTH_SHORT).show();
-                }
+            public void onSuccess(Void unused) {
+                Toast.makeText(getApplicationContext(), "Category Selected Successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(CategoryActivity.this, ClickPictureActivity.class));
+
             }
         });
 
 
-        }
 
-
+    }
 
 
     private void changeStatusBarColor() {

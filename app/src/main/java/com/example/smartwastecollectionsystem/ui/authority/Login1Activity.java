@@ -104,7 +104,7 @@ public class Login1Activity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-
+                    Toast.makeText(Login1Activity.this,"Login Successful", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Login1Activity.this, DetailsActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);

@@ -32,14 +32,18 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
@@ -48,9 +52,11 @@ public class MapActivity extends AppCompatActivity {
     private TextView textLat, textLon, textadd, textloc;
     private CircularProgressButton getlocationbtn;
     private ImageView backPicture, nextCategory;
-    private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
+    private FirebaseFirestore dbroot;
+    private FirebaseAuth auth;
     FusedLocationProviderClient fusedLocationProviderClient;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +71,10 @@ public class MapActivity extends AppCompatActivity {
         textadd = findViewById(R.id.add);
         textloc = findViewById(R.id.loc);
         getlocationbtn = findViewById(R.id.cirLocationButton);
+        dbroot = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        firebaseUser = auth.getCurrentUser();
+
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapActivity.this);
 
@@ -116,26 +126,23 @@ public class MapActivity extends AppCompatActivity {
                         textLon.setText("Longitude: "+addressList.get(0).getLongitude());
                         textadd.setText("Address: "+addressList.get(0).getAddressLine(0));
                        textloc.setText("Locality: "+addressList.get(0).getLocality());
-                       
+
+                        userID = auth.getCurrentUser().getUid();
+                        DocumentReference documentReference = dbroot.collection("User").document(userID);
+                        Map<String,Object> User = new HashMap<>();
+                        User.put("Address",textadd.getText().toString().trim());
+
+                        documentReference.set(User).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(getApplicationContext(), "Location saved successfully", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
 
                     } catch(IOException e){
                         e.printStackTrace();
-                        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-                        HashMap<String, String> hashMap = new HashMap<>();
-                        hashMap.put("Latitude", textLat.getText().toString());
-                        hashMap.put("Longitude", textLon.getText().toString());
-                        hashMap.put("Address", textadd.getText().toString());
-                        hashMap.put("Locality", textloc.getText().toString());
-                        databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(MapActivity.this, "Location saved successfully", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(MapActivity.this, "Location not saved successfully", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
 
                     }
                 }
@@ -145,6 +152,11 @@ public class MapActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void insertdata() {
+
+
     }
 
     private void changeStatusBarColor() {

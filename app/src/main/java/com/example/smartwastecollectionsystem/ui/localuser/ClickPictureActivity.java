@@ -82,12 +82,20 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
             }
         });
 
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ClickPictureActivity.this, LoginActivity.class));
+            }
+        });
+
         camerabtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 askCameraPermissions();
             }
         });
+
 
         gallerybtn.setOnClickListener(new View.OnClickListener() {
             @Override
