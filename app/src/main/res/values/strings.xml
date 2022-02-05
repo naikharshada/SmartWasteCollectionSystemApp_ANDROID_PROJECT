@@ -3,5 +3,7 @@
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
 
 </resources>

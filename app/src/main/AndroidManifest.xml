@@ -24,6 +24,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.authority.About_us1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.authority.Feedback1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.authority.Notify1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.authority.HomePage1Activity"
+            android:exported="false" />
+        <activity
             android:name=".ui.localuser.HomePageActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
