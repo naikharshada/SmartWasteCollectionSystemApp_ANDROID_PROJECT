@@ -2,11 +2,13 @@ package com.example.smartwastecollectionsystem.ui.authority;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,8 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.example.smartwastecollectionsystem.LoginAsActivity;
 import com.example.smartwastecollectionsystem.R;
+import com.example.smartwastecollectionsystem.ui.localuser.ClickPictureActivity;
+import com.example.smartwastecollectionsystem.ui.localuser.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class DetailsActivity extends AppCompatActivity {
@@ -65,7 +71,10 @@ public class DetailsActivity extends AppCompatActivity {
                         startActivity(intent4);
                         break;
 
+                    case R.id.log_out:
+                        logout(this);
 
+                        break;
 
                 }
                 return false;
@@ -73,6 +82,30 @@ public class DetailsActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    private void logout(NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Do you want to logout ?");
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //DetailsActivity.this.finishAffinity();
+                Toast.makeText(DetailsActivity.this, "Logout Successful", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(DetailsActivity.this, Login1Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+               // System.exit(0);
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+               dialogInterface.dismiss();
+            }
+        });
+       builder.show();
     }
 
     private void changeStatusBarColor() {
