@@ -34,7 +34,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.authority.HomePage1Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.localuser.HomePageActivity"
             android:exported="false"

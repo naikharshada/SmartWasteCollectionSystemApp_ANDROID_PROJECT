@@ -83,7 +83,7 @@ public class Register1Activity extends AppCompatActivity {
                         snackbar.show();
                     } else {
                         if (!mphonenumber_.matches("^\\d{8}$")) {
-                            Snackbar snackbar = Snackbar.make(view, "Enter Eight digit Telephone number",
+                            Snackbar snackbar = Snackbar.make(view, "Enter eight digit Telephone number",
                                     Snackbar.LENGTH_LONG);
                             View snackbarView = snackbar.getView();
                             snackbarView.setBackgroundColor(getResources().getColor(R.color.black));

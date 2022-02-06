@@ -73,9 +73,7 @@ public class DetailsActivity extends AppCompatActivity {
 
                     case R.id.log_out:
                         logout(this);
-
                         break;
-
                 }
                 return false;
             }

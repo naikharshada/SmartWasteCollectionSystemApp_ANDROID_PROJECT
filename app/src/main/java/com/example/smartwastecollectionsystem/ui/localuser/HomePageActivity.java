@@ -87,7 +87,7 @@ public class HomePageActivity extends AppCompatActivity {
                     snackbar.show();
 
                 } else {
-                    if (!em_.matches("^[\\w.+\\-]+@gmail\\.com$") || (em_.matches("^[\\w.+\\-]+@yahoo\\.com$") || (em_.matches("^[\\w.+\\-]+@rediffmail\\.com$")))) {
+                    if (!em_.matches("^[\\w.+\\-]+@" +"[^-][A-Za-z]+\\.com$")) {
                         Snackbar snackbar = Snackbar.make(view, "Invalid Email",
                                 Snackbar.LENGTH_LONG);
                         View snackbarView = snackbar.getView();

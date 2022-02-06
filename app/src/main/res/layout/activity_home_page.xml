@@ -95,7 +95,9 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/dbMobile"
                         style="@style/parent"
+                        app:counterEnabled="true"
                         app:prefixText="+91"
+                        app:counterMaxLength="10"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
