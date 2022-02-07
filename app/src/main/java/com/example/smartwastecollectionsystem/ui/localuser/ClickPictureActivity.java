@@ -80,6 +80,11 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
 
         nav = (NavigationView)findViewById(R.id.navmenu_);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
+
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.Open, R.string.Close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
         camerabtn = findViewById(R.id.cirCameraButton);
         gallerybtn = findViewById(R.id.cirGalleryButton);
         selectedImage = findViewById(R.id.clickImage);
