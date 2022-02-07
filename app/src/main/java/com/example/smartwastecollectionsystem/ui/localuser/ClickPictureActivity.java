@@ -2,14 +2,19 @@ package com.example.smartwastecollectionsystem.ui.localuser;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -20,6 +25,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -29,8 +35,15 @@ import android.widget.Toast;
 
 import com.example.smartwastecollectionsystem.LoginAsActivity;
 import com.example.smartwastecollectionsystem.R;
+import com.example.smartwastecollectionsystem.ui.authority.About_us1Activity;
+import com.example.smartwastecollectionsystem.ui.authority.DetailsActivity;
+import com.example.smartwastecollectionsystem.ui.authority.Feedback1Activity;
+import com.example.smartwastecollectionsystem.ui.authority.HomePage1Activity;
+import com.example.smartwastecollectionsystem.ui.authority.Login1Activity;
+import com.example.smartwastecollectionsystem.ui.authority.Notify1Activity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -48,10 +61,13 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
     public static final int CAMERA_PERM_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int GALLERY_REQUEST_CODE = 105;
-    private CircularProgressButton homebtn, logoutbtn, camerabtn, gallerybtn;
+    private CircularProgressButton camerabtn, gallerybtn;
     private ImageView selectedImage, addpage;
     String currentPhotoPath;
     private StorageReference storageReference;
+    NavigationView nav;
+    ActionBarDrawerToggle toggle;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +75,47 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
         setContentView(R.layout.activity_click_picture);
         changeStatusBarColor();
 
-        homebtn = findViewById(R.id.cirHomeButton);
-        logoutbtn = findViewById(R.id.cirLogoutButton);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_);
+        setSupportActionBar(toolbar);
+
+        nav = (NavigationView)findViewById(R.id.navmenu_);
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
         camerabtn = findViewById(R.id.cirCameraButton);
         gallerybtn = findViewById(R.id.cirGalleryButton);
         selectedImage = findViewById(R.id.clickImage);
         addpage = findViewById(R.id.add_location);
 
         storageReference = FirebaseStorage.getInstance().getReference();
+
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.menu_home:
+                        Intent intent1 = new Intent(ClickPictureActivity.this, HomePageActivity.class);
+                        startActivity(intent1);
+                        break;
+
+                    case R.id.menu_notify:
+                        Intent intent2 = new Intent(ClickPictureActivity.this, Notify1Activity.class);
+                        startActivity(intent2);
+                        break;
+
+
+                    case R.id.menu_aboutus:
+                        Intent intent3 = new Intent(ClickPictureActivity.this, About_us1Activity.class);
+                        startActivity(intent3);
+                        break;
+
+                    case R.id.menu_logout:
+                        logout(this);
+                        break;
+                }
+                return false;
+            }
+
+        });
 
         addpage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,19 +124,7 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
             }
         });
 
-        homebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ClickPictureActivity.this, HomePageActivity.class));
-            }
-        });
 
-        logoutbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ClickPictureActivity.this, LoginActivity.class));
-            }
-        });
 
         camerabtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +142,30 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
             }
 
         });
+    }
+
+    private void logout(NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Do you want to logout ?");
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //DetailsActivity.this.finishAffinity();
+                Toast.makeText(ClickPictureActivity.this, "Logout Successful", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ClickPictureActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                // System.exit(0);
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
     }
 
     private void askCameraPermissions() {
@@ -232,7 +293,7 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 //            window.setStatusBarColor(Color.TRANSPARENT);
-            window.setStatusBarColor(getResources().getColor(R.color.login_bk_color));
+            window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
         }
     }
 }
