@@ -1,6 +1,7 @@
 package com.example.smartwastecollectionsystem.ui.localuser;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -99,6 +100,7 @@ public class MapActivity extends AppCompatActivity {
                     showLocation();
                 else
                     ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+                    //requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100);
             }
         });
     }
@@ -148,16 +150,23 @@ public class MapActivity extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(MapActivity.this, "Location null error", Toast.LENGTH_SHORT).show();
+                   // requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100);
                 }
 
             }
         });
     }
 
-    private void insertdata() {
-
-
-    }
+   /* @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 100 && (grantResults.length > 0) &&
+                (grantResults[0] + grantResults[1] == PackageManager.PERMISSION_GRANTED )) {
+            showLocation();
+        } else {
+            Toast.makeText(MapActivity.this, "Location permission is required", Toast.LENGTH_SHORT).show();
+        }
+    }*/
 
     private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
