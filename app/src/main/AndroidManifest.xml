@@ -24,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.authority.viewDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.authority.About_us1Activity"
             android:exported="false" />
         <activity
