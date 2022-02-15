@@ -1,9 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.authority.viewDetailsActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="197dp">
+
+                <TextView
+                    style="@style/viewParent.headerText.NoMode"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="12sp"
+                    android:text="Garbage Picture: " />
+
+                <ImageView
+                    android:id="@+id/garbage_pic"
+                    android:layout_width="188dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="21dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="150dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/address"
+                style="@style/viewParent.headerText"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="50dp"
+                android:hint="mumbai"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/Category"
+                style="@style/viewParent.headerText"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="50dp"
+                android:hint="category"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp">
+
+                <TextView
+                    style="@style/viewParent.headerText"
+                    android:layout_alignParentLeft="true"
+                    android:text="Email Id: "
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/detail_Id"
+                  android:layout_marginStart="60dp"
+                    style="@style/viewParent.headerText"
+                    android:hint="naikharshada2002@gmail.com"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                android:id="@+id/cirGalleryButton"
+                style="@style/loginButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="70dp"
+                android:text="Accept Request"
+                app:initialCornerAngle="27dp"
+                app:spinning_bar_color="#FFF"
+                app:spinning_bar_padding="6dp"
+                app:spinning_bar_width="4dp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <View
+        android:layout_width="11dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_side_bg" />
+
+    <ImageView
+        android:id="@+id/back_loginAs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginBottom="20dp"
+        android:adjustViewBounds="false"
+        android:src="@drawable/ic_back_img" />
+
+</RelativeLayout>
