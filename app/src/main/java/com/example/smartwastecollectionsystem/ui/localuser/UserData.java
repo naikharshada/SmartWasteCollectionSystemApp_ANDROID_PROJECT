@@ -11,8 +11,12 @@ public class UserData {
     private double Latitude;
     private String Address;
     private String Locality;
+    private String imageUrl;
 
-    public UserData(String userId, String username, String email, String phone, String password, String category, double longitude, double latitude, String address, String locality) {
+    public UserData() {
+    }
+
+    public UserData(String userId, String username, String email, String phone, String password, String category, double longitude, double latitude, String address, String locality, String imageUrl) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -23,9 +27,7 @@ public class UserData {
         Latitude = latitude;
         Address = address;
         Locality = locality;
-    }
-
-    public UserData() {
+        this.imageUrl = imageUrl;
     }
 
     public String getUserId() {
@@ -106,6 +108,14 @@ public class UserData {
 
     public void setLocality(String locality) {
         Locality = locality;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
 

@@ -67,8 +67,8 @@
 
                 <TextView
                     android:id="@+id/detail_Id"
-                  android:layout_marginStart="60dp"
                     style="@style/viewParent.headerText"
+                    android:layout_marginStart="60dp"
                     android:hint="naikharshada2002@gmail.com"
                     android:textSize="12sp" />
             </RelativeLayout>

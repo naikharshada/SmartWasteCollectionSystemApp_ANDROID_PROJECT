@@ -45,6 +45,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -64,6 +68,9 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
     private CircularProgressButton camerabtn, gallerybtn;
     private ImageView selectedImage, addpage;
     String currentPhotoPath;
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth auth;
+    private DatabaseReference databaseReference;
     private StorageReference storageReference;
     NavigationView nav;
     ActionBarDrawerToggle toggle;
@@ -91,6 +98,10 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
         addpage = findViewById(R.id.add_location);
 
         storageReference = FirebaseStorage.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
+        firebaseUser = auth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -204,7 +215,7 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 String imageFileName = "JPEG_" + timeStamp +"."+getFileExt(contentUri);
                 Log.d("tag", "onActivityResult: Gallery Image Uri:  " + imageFileName);
-                //selectedImage.setImageURI(contentUri);
+                selectedImage.setImageURI(contentUri);
 
                 uploadImageToFirebase(imageFileName,contentUri);
 
@@ -222,9 +233,11 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.get().load(uri).into(selectedImage);
+                       databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("imageUrl").setValue(contentUri.toString());
                     }
                 });
               Toast.makeText(ClickPictureActivity.this, "Image is uploaded", Toast.LENGTH_SHORT).show();
+
 
             }
         }).addOnFailureListener(new OnFailureListener() {
