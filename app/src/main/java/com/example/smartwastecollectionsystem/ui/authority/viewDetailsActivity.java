@@ -22,10 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class viewDetailsActivity extends AppCompatActivity {
 
-    private FirebaseAuth auth;
-    private FirebaseUser firebaseUser;
-    private DatabaseReference databaseReference;
-    private TextView detail_em;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,28 +30,8 @@ public class viewDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_details);
         changeStatusBarColor();
 
-        detail_em = findViewById(R.id.detail_Id);
-
-        auth = FirebaseAuth.getInstance();
-        firebaseUser = auth.getCurrentUser();
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                UserData userData = snapshot.getValue(UserData.class);
-                assert userData!= null;
-                detail_em.setText(userData.getEmail());
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(viewDetailsActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
 
 
-            }
-        });
     }
 
     private void changeStatusBarColor() {

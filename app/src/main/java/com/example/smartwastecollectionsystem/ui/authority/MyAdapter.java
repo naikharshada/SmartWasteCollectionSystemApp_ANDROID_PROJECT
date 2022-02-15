@@ -41,6 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         UserData userData = userDataArrayList.get(position);
 
         holder.Address.setText(userData.getAddress());
+        holder.Category_waste.setText(userData.getCategory());
 
         holder.viewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,13 +60,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView Address;
+        TextView Address, Category_waste;
         CircularProgressButton viewDetails;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             Address = itemView.findViewById(R.id.address);
+            Category_waste = itemView.findViewById(R.id.waste_category);
             viewDetails = itemView.findViewById(R.id.cirViewButton);
         }
     }

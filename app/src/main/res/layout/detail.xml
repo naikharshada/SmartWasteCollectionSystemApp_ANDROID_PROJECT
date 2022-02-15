@@ -25,11 +25,32 @@
                 android:hint="mumbai"
                 android:textSize="12sp" />
 
+
+            <TextView
+                style="@style/viewParent.headerText"
+                android:layout_below="@+id/address"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="Waste Category: "
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/waste_category"
+                style="@style/viewParent.headerText"
+                android:layout_below="@id/address"
+                android:layout_marginStart="95dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:hint="not known"
+                android:textSize="12sp" />
+
             <ImageView
                 android:id="@+id/delete_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/address"
+                android:layout_below="@+id/waste_category"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
@@ -41,7 +62,7 @@
                 style="@style/loginButton"
                 android:layout_width="132dp"
                 android:layout_height="28dp"
-                android:layout_below="@+id/address"
+                android:layout_below="@+id/waste_category"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="5dp"

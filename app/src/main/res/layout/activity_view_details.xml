@@ -32,16 +32,17 @@
                     android:id="@+id/garbage_pic"
                     android:layout_width="188dp"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="21dp"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="150dp" />
+                    android:layout_marginStart="150dp"
+                    android:layout_marginRight="21dp"
+                    android:src="@drawable/ic_camera" />
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/address"
                 style="@style/viewParent.headerText"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:hint="mumbai"
                 android:textSize="12sp" />
 
@@ -49,28 +50,49 @@
                 android:id="@+id/Category"
                 style="@style/viewParent.headerText"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:hint="category"
                 android:textSize="12sp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp">
+                android:layout_marginTop="30dp">
 
                 <TextView
                     style="@style/viewParent.headerText"
                     android:layout_alignParentLeft="true"
-                    android:text="Email Id: "
+                    android:text="User Email Id: "
                     android:textSize="12sp" />
 
 
                 <TextView
                     android:id="@+id/detail_Id"
                     style="@style/viewParent.headerText"
-                    android:layout_marginStart="60dp"
+                    android:layout_marginStart="90dp"
                     android:hint="naikharshada2002@gmail.com"
                     android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    style="@style/viewParent.headerText"
+                    android:layout_alignParentLeft="true"
+                    android:text="User Phone number: "
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/detail_phone"
+                    style="@style/viewParent.headerText"
+                    android:layout_marginStart="130dp"
+                    android:hint="123456785"
+                    android:textSize="12sp"
+                    app:prefixText="+91" />
             </RelativeLayout>
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
