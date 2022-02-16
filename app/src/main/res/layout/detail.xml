@@ -19,9 +19,17 @@
             android:layout_height="wrap_content">
 
             <TextView
+                style="@style/viewParent.headerText"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="15dp"
+                android:text="Address: "
+                android:textSize="12sp" />
+
+            <TextView
                 android:id="@+id/address"
                 style="@style/viewParent.headerText"
                 android:layout_alignParentLeft="true"
+                android:layout_marginStart="55dp"
                 android:hint="mumbai"
                 android:textSize="12sp" />
 

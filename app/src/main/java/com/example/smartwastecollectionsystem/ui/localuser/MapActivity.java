@@ -58,6 +58,7 @@ public class MapActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     FusedLocationProviderClient fusedLocationProviderClient;
     String userID;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class MapActivity extends AppCompatActivity {
         dbroot = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         firebaseUser = auth.getCurrentUser();
-
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapActivity.this);
 
@@ -129,7 +130,7 @@ public class MapActivity extends AppCompatActivity {
                         textadd.setText("Address: "+addressList.get(0).getAddressLine(0));
                        textloc.setText("Locality: "+addressList.get(0).getLocality());
 
-                        userID = auth.getCurrentUser().getUid();
+                       /* userID = auth.getCurrentUser().getUid();
                         DocumentReference documentReference = dbroot.collection("User").document(userID);
                         Map<String,Object> User = new HashMap<>();
                         User.put("Address",textadd.getText().toString().trim());
@@ -140,8 +141,14 @@ public class MapActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Location saved successfully", Toast.LENGTH_SHORT).show();
 
                             }
-                        });
+                        });*/
 
+                        databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("Address").setValue(textadd.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(getApplicationContext(), "Location saved successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
                     } catch(IOException e){
                         e.printStackTrace();

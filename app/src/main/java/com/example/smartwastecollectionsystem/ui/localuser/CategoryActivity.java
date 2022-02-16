@@ -39,9 +39,8 @@ public class CategoryActivity extends AppCompatActivity {
     private FirebaseFirestore dbroot;
     private FirebaseAuth auth;
     private FirebaseUser firebaseUser;
+    private DatabaseReference databaseReference;
     String userID;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +59,7 @@ public class CategoryActivity extends AppCompatActivity {
         firebaseUser = auth.getCurrentUser();
 
         dbroot = FirebaseFirestore.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
 
         backtomap.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +92,7 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     private void send(String category) {
-        userID = auth.getCurrentUser().getUid();
+        /*userID = auth.getCurrentUser().getUid();
         Map<String,Object> User = new HashMap<>();
         User.put("Category",category);
         dbroot.collection("User").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -101,6 +101,13 @@ public class CategoryActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Category Selected Successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(CategoryActivity.this, ClickPictureActivity.class));
 
+            }
+        });*/
+        databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("Category").setValue(category).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(getApplicationContext(), "Category saved successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(CategoryActivity.this, ClickPictureActivity.class));
             }
         });
 

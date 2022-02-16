@@ -1,7 +1,6 @@
 package com.example.smartwastecollectionsystem.ui.authority;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,55 +18,46 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
+    ArrayList<UserData> uList;
     Context context;
-    ArrayList<UserData> userDataArrayList;
 
-    public MyAdapter(Context context, ArrayList<UserData> userDataArrayList) {
+    public MyAdapter(Context context , ArrayList<UserData> uList) {
+        this.uList = uList;
         this.context = context;
-        this.userDataArrayList = userDataArrayList;
     }
+
 
     @NonNull
     @Override
-    public MyAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(context).inflate(R.layout.detail,parent,false);
-        return new MyViewHolder(view);
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+       View view = LayoutInflater.from(context).inflate(R.layout.detail, parent, false);
+       return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
-
-        UserData userData = userDataArrayList.get(position);
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        UserData userData = uList.get(position);
 
         holder.Address.setText(userData.getAddress());
-        holder.Category_waste.setText(userData.getCategory());
-
-        holder.viewDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, viewDetailsActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
-        });
+        holder.category_waste.setText(userData.getCategory());
 
     }
 
     @Override
     public int getItemCount() {
-        return userDataArrayList.size();
+        return uList.size();
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView Address, Category_waste;
+        TextView Address, category_waste;
         CircularProgressButton viewDetails;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             Address = itemView.findViewById(R.id.address);
-            Category_waste = itemView.findViewById(R.id.waste_category);
+            category_waste = itemView.findViewById(R.id.waste_category);
             viewDetails = itemView.findViewById(R.id.cirViewButton);
         }
     }

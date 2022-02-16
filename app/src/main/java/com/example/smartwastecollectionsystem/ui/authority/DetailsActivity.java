@@ -28,6 +28,11 @@ import com.example.smartwastecollectionsystem.ui.localuser.ClickPictureActivity;
 import com.example.smartwastecollectionsystem.ui.localuser.LoginActivity;
 import com.example.smartwastecollectionsystem.ui.localuser.UserData;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,13 +43,14 @@ import java.util.ArrayList;
 
 public class DetailsActivity extends AppCompatActivity {
 
-   NavigationView nav;
-   ActionBarDrawerToggle toggle;
-   DrawerLayout drawerLayout;
-   RecyclerView recyclerView;
-   ArrayList<UserData> userDataArrayList;
-   MyAdapter myAdapter;
-   FirebaseFirestore db;
+   private NavigationView nav;
+   private ActionBarDrawerToggle toggle;
+   private DrawerLayout drawerLayout;
+    RecyclerView recyclerView;
+   ArrayList<UserData> List;
+    MyAdapter myAdapter;
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+   DatabaseReference databaseReference = firebaseDatabase.getReference("Users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +72,9 @@ public class DetailsActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        db = FirebaseFirestore.getInstance();
-        userDataArrayList = new ArrayList<UserData>();
-        myAdapter = new MyAdapter(DetailsActivity.this, userDataArrayList);
+        //db = FirebaseFirestore.getInstance();
+        List = new ArrayList<UserData>();
+        myAdapter = new MyAdapter(DetailsActivity.this, List);
 
         recyclerView.setAdapter(myAdapter);
 
@@ -111,7 +117,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void EventChangeListener() {
-        db.collection("User").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        /*db.collection("User").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if(error!=null){
@@ -126,7 +132,25 @@ public class DetailsActivity extends AppCompatActivity {
                 }
 
             }
+        });*/
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    UserData userdata = dataSnapshot.getValue(UserData.class);
+                    List.add(userdata);
+                }
+                myAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+
+            }
         });
+
     }
 
     private void logout(NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener) {

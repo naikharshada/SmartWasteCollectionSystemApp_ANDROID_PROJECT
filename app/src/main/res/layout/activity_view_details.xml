@@ -25,8 +25,8 @@
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
-                    android:textSize="12sp"
-                    android:text="Garbage Picture: " />
+                    android:text="Garbage Picture: "
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/garbage_pic"
@@ -46,13 +46,24 @@
                 android:hint="mumbai"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/Category"
-                style="@style/viewParent.headerText"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="30dp"
-                android:hint="category"
-                android:textSize="12sp" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    style="@style/viewParent.headerText"
+                    android:layout_alignParentLeft="true"
+                    android:text="Waste Category: "
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/Category"
+                    style="@style/viewParent.headerText"
+                    android:layout_marginStart="95dp"
+                    android:hint="category"
+                    android:textSize="12sp" />
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -120,7 +131,7 @@
         android:background="@drawable/ic_side_bg" />
 
     <ImageView
-        android:id="@+id/back_loginAs"
+        android:id="@+id/back_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
