@@ -49,6 +49,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -58,6 +60,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
@@ -75,6 +79,8 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
     NavigationView nav;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
+    private FirebaseFirestore dbroot;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +107,7 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
         auth = FirebaseAuth.getInstance();
         firebaseUser = auth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        dbroot = FirebaseFirestore.getInstance();
 
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -233,10 +240,20 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.get().load(uri).into(selectedImage);
-                       databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("imageUrl").setValue(contentUri.toString());
+                      // databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("imageUrl").setValue(contentUri.toString());
+                        userID = auth.getCurrentUser().getUid();
+                        Map<String,Object> User = new HashMap<>();
+                        User.put("imageurl",contentUri.toString());
+                        dbroot.collection("Users").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(getApplicationContext(), "Image uploaded Successfully", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
                     }
                 });
-              Toast.makeText(ClickPictureActivity.this, "Image is uploaded", Toast.LENGTH_SHORT).show();
+              //Toast.makeText(ClickPictureActivity.this, "Image is uploaded", Toast.LENGTH_SHORT).show();
 
 
             }

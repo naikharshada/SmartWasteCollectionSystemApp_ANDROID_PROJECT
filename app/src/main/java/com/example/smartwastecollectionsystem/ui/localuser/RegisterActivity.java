@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -23,8 +24,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
@@ -35,6 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
     private CircularProgressButton registerbtn;
     private TextView signin_btn;
     private FirebaseAuth auth;
+    private FirebaseFirestore dbroot;
+    String userID;
     private DatabaseReference databaseReference;
 
 
@@ -52,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerbtn = findViewById(R.id.cirRegisterButton);
         signin_btn = findViewById(R.id.sign_in);
         auth = FirebaseAuth.getInstance();
+        dbroot = FirebaseFirestore.getInstance();
 
         signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
         auth.createUserWithEmailAndPassword(email_, password_).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
+               /* if (task.isSuccessful()) {
                     FirebaseUser rUser = auth.getCurrentUser();
                     assert rUser != null;
                     String userId = rUser.getUid();
@@ -132,7 +139,26 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(RegisterActivity.this,  (task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
 
-                }
+                }*/
+
+                userID = auth.getCurrentUser().getUid();
+                DocumentReference documentReference = dbroot.collection("Users").document(userID);
+                Map<String,Object> User = new HashMap<>();
+                User.put("userID",userID);
+                User.put("username", fullname_);
+                User.put("email", email_);
+                User.put("phone", phonenumber_);
+                User.put("password", password_);
+
+                documentReference.set(User).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(RegisterActivity.this,"Registered Successfully", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
 
             }
 

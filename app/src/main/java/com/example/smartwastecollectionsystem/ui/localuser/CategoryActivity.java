@@ -92,24 +92,24 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     private void send(String category) {
-        /*userID = auth.getCurrentUser().getUid();
+        userID = auth.getCurrentUser().getUid();
         Map<String,Object> User = new HashMap<>();
         User.put("Category",category);
-        dbroot.collection("User").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
+        dbroot.collection("Users").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getApplicationContext(), "Category Selected Successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(CategoryActivity.this, ClickPictureActivity.class));
 
             }
-        });*/
-        databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("Category").setValue(category).addOnSuccessListener(new OnSuccessListener<Void>() {
+        });
+       /* databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("Category").setValue(category).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getApplicationContext(), "Category saved successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(CategoryActivity.this, ClickPictureActivity.class));
             }
-        });
+        });*/
 
 
 

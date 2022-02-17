@@ -47,10 +47,10 @@ public class DetailsActivity extends AppCompatActivity {
    private ActionBarDrawerToggle toggle;
    private DrawerLayout drawerLayout;
     RecyclerView recyclerView;
-   ArrayList<UserData> List;
+   ArrayList<UserData> userDataArrayList;
     MyAdapter myAdapter;
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-   DatabaseReference databaseReference = firebaseDatabase.getReference("Users");
+    FirebaseFirestore db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +72,9 @@ public class DetailsActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        //db = FirebaseFirestore.getInstance();
-        List = new ArrayList<UserData>();
-        myAdapter = new MyAdapter(DetailsActivity.this, List);
+        db = FirebaseFirestore.getInstance();
+        userDataArrayList = new ArrayList<UserData>();
+        myAdapter = new MyAdapter(DetailsActivity.this, userDataArrayList);
 
         recyclerView.setAdapter(myAdapter);
 
@@ -117,7 +117,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void EventChangeListener() {
-        /*db.collection("User").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("Users").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if(error!=null){
@@ -132,9 +132,9 @@ public class DetailsActivity extends AppCompatActivity {
                 }
 
             }
-        });*/
+        });
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+      /*  databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -149,7 +149,7 @@ public class DetailsActivity extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
     }
 

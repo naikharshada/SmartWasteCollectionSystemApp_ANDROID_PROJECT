@@ -44,8 +44,6 @@ public class viewDetailsActivity extends AppCompatActivity {
         eml = findViewById(R.id.detail_Id);
         pho = findViewById(R.id.detail_phone);
 
-        addr.setText(getIntent().getStringExtra("Address"));
-        cat.setText(getIntent().getStringExtra("Category_waste"));
 
         backtodetails.setOnClickListener(new View.OnClickListener() {
             @Override

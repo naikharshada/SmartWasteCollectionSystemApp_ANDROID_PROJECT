@@ -130,25 +130,24 @@ public class MapActivity extends AppCompatActivity {
                         textadd.setText("Address: "+addressList.get(0).getAddressLine(0));
                        textloc.setText("Locality: "+addressList.get(0).getLocality());
 
-                       /* userID = auth.getCurrentUser().getUid();
-                        DocumentReference documentReference = dbroot.collection("User").document(userID);
+                        userID = auth.getCurrentUser().getUid();
                         Map<String,Object> User = new HashMap<>();
                         User.put("Address",textadd.getText().toString().trim());
-
-                        documentReference.set(User).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        dbroot.collection("Users").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(getApplicationContext(), "Location saved successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Location saved Successfully", Toast.LENGTH_SHORT).show();
 
-                            }
-                        });*/
-
-                        databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("Address").setValue(textadd.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(getApplicationContext(), "Location saved successfully", Toast.LENGTH_SHORT).show();
                             }
                         });
+
+
+                       /* databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("Address").setValue(textadd.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(getApplicationContext(), "Location saved successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        });*/
 
                     } catch(IOException e){
                         e.printStackTrace();
