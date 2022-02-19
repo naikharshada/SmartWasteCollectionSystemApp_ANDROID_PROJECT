@@ -243,7 +243,7 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
                       // databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("imageUrl").setValue(contentUri.toString());
                         userID = auth.getCurrentUser().getUid();
                         Map<String,Object> User = new HashMap<>();
-                        User.put("imageurl",contentUri.toString());
+                        User.put("imageurl",uri.toString());
                         dbroot.collection("Users").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {

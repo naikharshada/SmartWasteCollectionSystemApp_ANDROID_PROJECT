@@ -73,6 +73,7 @@
                 app:spinning_bar_padding="6dp"
                 app:spinning_bar_width="4dp" />
 
+
         </RelativeLayout>
 
     </LinearLayout>

@@ -1,8 +1,5 @@
 package com.example.smartwastecollectionsystem.ui.localuser;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -11,19 +8,25 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
@@ -31,9 +34,11 @@ public class HomePageActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private FirebaseUser firebaseUser;
+    private FirebaseFirestore firestore;
     private CircularProgressButton updatebtn;
     private DatabaseReference databaseReference;
     private EditText na, em, ph, pa;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,24 +53,19 @@ public class HomePageActivity extends AppCompatActivity {
         updatebtn = findViewById(R.id.cirUpdateButton);
         auth = FirebaseAuth.getInstance();
         firebaseUser = auth.getCurrentUser();
+        firestore = FirebaseFirestore.getInstance();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        userID = auth.getCurrentUser().getUid();
+
+
+        DocumentReference documentReference  = firestore.collection("Users").document(userID);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                UserData userData = snapshot.getValue(UserData.class);
-                assert userData!= null;
-                na.setText(userData.getUsername());
-                em.setText(userData.getEmail());
-                ph.setText(userData.getPhone());
-                pa.setText(userData.getPassword());
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(HomePageActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                na.setText(value.getString("username"));
+                em.setText(value.getString("email"));
+                ph.setText(value.getString("phone"));
+                pa.setText(value.getString("password"));
 
             }
         });
@@ -114,15 +114,14 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void updatedata(String na_, String em_, String ph_, String pa_) {
-        HashMap User = new HashMap();
+        Map<String, Object> User = new HashMap();
         User.put("username",na_);
         User.put("email",em_);
         User.put("phone",ph_);
         User.put("password",pa_);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        databaseReference.child(firebaseUser.getUid()).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
+        firestore.collection("Users").document(userID).update(User).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task task) {
+            public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
 
 

@@ -11,12 +11,12 @@ public class UserData {
     private double Latitude;
     private String Address;
     private String Locality;
-    private String imageUrl;
+    private int imageUrl;
 
     public UserData() {
     }
 
-    public UserData(String userId, String username, String email, String phone, String password, String category, double longitude, double latitude, String address, String locality, String imageUrl) {
+    public UserData(String userId, String username, String email, String phone, String password, String category, double longitude, double latitude, String address, String locality, int imageUrl) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -110,11 +110,11 @@ public class UserData {
         Locality = locality;
     }
 
-    public String getImageUrl() {
+    public int getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(int imageUrl) {
         this.imageUrl = imageUrl;
     }
 }

@@ -80,7 +80,7 @@
                 <TextView
                     android:id="@+id/detail_Id"
                     style="@style/viewParent.headerText"
-                    android:layout_marginStart="90dp"
+                    android:layout_marginStart="80dp"
                     android:hint="naikharshada2002@gmail.com"
                     android:textSize="12sp" />
             </RelativeLayout>
@@ -93,14 +93,14 @@
                 <TextView
                     style="@style/viewParent.headerText"
                     android:layout_alignParentLeft="true"
-                    android:text="User Phone number: "
+                    android:text="User Phone number: (+91) "
                     android:textSize="12sp" />
 
 
                 <TextView
                     android:id="@+id/detail_phone"
                     style="@style/viewParent.headerText"
-                    android:layout_marginStart="130dp"
+                    android:layout_marginStart="145dp"
                     android:hint="123456785"
                     android:textSize="12sp"
                     app:prefixText="+91" />

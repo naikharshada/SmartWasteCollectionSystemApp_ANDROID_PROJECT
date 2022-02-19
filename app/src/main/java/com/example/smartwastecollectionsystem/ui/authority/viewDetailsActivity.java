@@ -1,8 +1,5 @@
 package com.example.smartwastecollectionsystem.ui.authority;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,19 +8,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartwastecollectionsystem.R;
-import com.example.smartwastecollectionsystem.ui.localuser.LoginActivity;
-import com.example.smartwastecollectionsystem.ui.localuser.RegisterActivity;
-import com.example.smartwastecollectionsystem.ui.localuser.UserData;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class viewDetailsActivity extends AppCompatActivity {
 
@@ -43,6 +31,13 @@ public class viewDetailsActivity extends AppCompatActivity {
         cat = findViewById(R.id.Category);
         eml = findViewById(R.id.detail_Id);
         pho = findViewById(R.id.detail_phone);
+
+
+        addr.setText(getIntent().getStringExtra("Address"));
+        cat.setText(getIntent().getStringExtra("Category_waste"));
+        eml.setText(getIntent().getStringExtra("emailID"));
+        pho.setText(getIntent().getStringExtra("phonenumber"));
+        wastePicture.setImageResource(getIntent().getIntExtra("image",0));
 
 
         backtodetails.setOnClickListener(new View.OnClickListener() {
