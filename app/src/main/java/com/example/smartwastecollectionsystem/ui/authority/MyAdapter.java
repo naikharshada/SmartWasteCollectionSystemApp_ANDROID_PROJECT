@@ -45,13 +45,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.Address.setText(userData.getAddress());
         holder.Category_waste.setText(userData.getCategory());
-        holder.image.setImageResource(userData.getImageUrl());
 
         holder.viewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, viewDetailsActivity.class);
-                intent.putExtra("image",temp.getImageUrl());
                 intent.putExtra("Address", temp.getAddress());
                 intent.putExtra("Category_waste", temp.getCategory());
                 intent.putExtra("emailID", temp.getEmail());

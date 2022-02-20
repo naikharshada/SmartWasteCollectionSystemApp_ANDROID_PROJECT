@@ -107,7 +107,7 @@
             </RelativeLayout>
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-                android:id="@+id/cirGalleryButton"
+                android:id="@+id/cirAcceptButton"
                 style="@style/loginButton"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="70dp"

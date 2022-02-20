@@ -37,7 +37,7 @@ public class viewDetailsActivity extends AppCompatActivity {
         cat.setText(getIntent().getStringExtra("Category_waste"));
         eml.setText(getIntent().getStringExtra("emailID"));
         pho.setText(getIntent().getStringExtra("phonenumber"));
-        wastePicture.setImageResource(getIntent().getIntExtra("image",0));
+    
 
 
         backtodetails.setOnClickListener(new View.OnClickListener() {
