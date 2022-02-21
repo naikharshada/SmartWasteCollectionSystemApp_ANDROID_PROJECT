@@ -16,8 +16,7 @@ import com.example.smartwastecollectionsystem.R;
 public class viewDetailsActivity extends AppCompatActivity {
 
     private ImageView backtodetails;
-    private ImageView wastePicture;
-    private TextView addr, cat, eml, pho;
+    private TextView addr, cat, eml, pho, wastePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +33,11 @@ public class viewDetailsActivity extends AppCompatActivity {
 
 
         addr.setText(getIntent().getStringExtra("Address"));
+        //wastePicture.setImageResource(getIntent().getIntExtra("image", 0));
+       wastePicture.setText(getIntent().getStringExtra("image"));
         cat.setText(getIntent().getStringExtra("Category_waste"));
         eml.setText(getIntent().getStringExtra("emailID"));
         pho.setText(getIntent().getStringExtra("phonenumber"));
-    
-
 
         backtodetails.setOnClickListener(new View.OnClickListener() {
             @Override
