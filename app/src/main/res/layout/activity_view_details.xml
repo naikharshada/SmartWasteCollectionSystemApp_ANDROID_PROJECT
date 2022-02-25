@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/register_bk_color"
-    android:focusableInTouchMode="true"
     android:gravity="center"
     tools:context=".ui.authority.viewDetailsActivity">
 
@@ -69,15 +68,16 @@
                         <TextView
                             style="@style/viewParent.headerText.NoMode"
                             android:layout_alignParentLeft="true"
-                            android:text="Garbage View: "
+                            android:text="waste picture: "
                             android:textSize="12sp" />
 
-                        <TextView
+                        <ImageView
                             android:id="@+id/garbage_pic"
-                            style="@style/modifiedEditText"
-                            android:layout_marginStart="85dp"
-                            android:hint="link"
-                            android:textSize="12sp" />
+                            android:layout_width="220dp"
+                            android:layout_height="178dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="80dp"
+                            android:src="@drawable/ic_launcher_background" />
 
                     </RelativeLayout>
 
@@ -89,14 +89,14 @@
                     <TextView
                         style="@style/viewParent.headerText"
                         android:layout_alignParentLeft="true"
-                        android:text="address: "
+                        android:text="Waste location: "
                         android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/address"
                         style="@style/modifiedEditText"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginStart="52dp"
+                        android:layout_marginStart="90dp"
                         android:hint="mumbai"
                         android:textSize="12sp" />
                     </RelativeLayout>

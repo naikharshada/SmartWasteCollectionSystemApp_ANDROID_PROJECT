@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.smartwastecollectionsystem.R;
 import com.example.smartwastecollectionsystem.ui.localuser.UserData;
 
@@ -44,15 +46,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.Address.setText(userData.getAddress());
         holder.Category_waste.setText(userData.getCategory());
-       // holder.image.setImageResource(userData.getImageUrl());
+        Glide.with(holder.imageurl.getContext()).load(userDataArrayList.get(position).getImageurl()).into(holder.imageurl);
 
+        // holder.image.setImageResource(userData.getImageUrl());
 
         holder.viewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, viewDetailsActivity.class);
                 intent.putExtra("Address", temp.getAddress());
-                intent.putExtra("image", temp.getImageurl());
+                intent.putExtra("imageurl", temp.getImageurl());
                 intent.putExtra("Category_waste", temp.getCategory());
                 intent.putExtra("emailID", temp.getEmail());
                 intent.putExtra("phonenumber",temp.getPhone());
@@ -70,7 +73,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView Address, Category_waste, emailID, phonenumber, image;
+        TextView Address, Category_waste, emailID, phonenumber;
+        ImageView imageurl;
         CircularProgressButton viewDetails;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -79,7 +83,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             Address = itemView.findViewById(R.id.address);
             Category_waste = itemView.findViewById(R.id.waste_category);
             viewDetails = itemView.findViewById(R.id.cirViewButton);
-            image = itemView.findViewById(R.id.garbage_pic);
+            //image = itemView.findViewById(R.id.garbage_pic);
+            imageurl = (ImageView)itemView.findViewById(R.id.imageView);
         }
     }
 }

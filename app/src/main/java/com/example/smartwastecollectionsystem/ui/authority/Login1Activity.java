@@ -1,8 +1,5 @@
 package com.example.smartwastecollectionsystem.ui.authority;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,10 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.smartwastecollectionsystem.LoginAsActivity;
 import com.example.smartwastecollectionsystem.R;
-import com.example.smartwastecollectionsystem.ui.localuser.ClickPictureActivity;
-import com.example.smartwastecollectionsystem.ui.localuser.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -84,16 +82,16 @@ public class Login1Activity extends AppCompatActivity {
                     snackbar.show();
                 } else {
                     if (!memail_.matches("^[\\w.+\\-]+@" +"[^-][A-Za-z]+(\\.gov+)*(\\.in)$")) {
-                        Snackbar snackbar = Snackbar.make(view, "Enter registered email",
+                        Snackbar snackbar = Snackbar.make(view, "Enter Registered Email",
                                 Snackbar.LENGTH_LONG);
                         View snackbarView = snackbar.getView();
                         snackbarView.setBackgroundColor(getResources().getColor(R.color.black));
                         snackbar.show();
 
-                } else {
-                    login(memail_, mpassword_);
+                    } else {
+                        login(memail_, mpassword_);
+                    }
                 }
-            }
 
             }
         });

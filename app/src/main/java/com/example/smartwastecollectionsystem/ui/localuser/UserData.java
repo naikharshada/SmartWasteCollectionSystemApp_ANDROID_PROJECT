@@ -12,6 +12,7 @@ public class UserData {
     private String Address;
     private String Locality;
     private String imageurl;
+    private String garimage;
 
     public UserData() {
     }
@@ -29,6 +30,7 @@ public class UserData {
         Locality = locality;
         this.imageurl = imageurl;
     }
+
 
     public String getUserId() {
         return userId;

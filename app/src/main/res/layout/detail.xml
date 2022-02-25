@@ -74,6 +74,14 @@
                 app:spinning_bar_padding="6dp"
                 app:spinning_bar_width="4dp" />
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/cirViewButton"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+
 
         </RelativeLayout>
 
