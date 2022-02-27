@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,7 +40,7 @@ public class DetailsActivity extends AppCompatActivity {
    ArrayList<UserData> userDataArrayList;
     MyAdapter myAdapter;
     FirebaseFirestore db;
-    ImageView  imageurl;
+    //ImageView  imageurl;
 
 
     @Override
@@ -50,7 +49,7 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         changeStatusBarColor();
 
-        imageurl=(ImageView)findViewById(R.id.imageView);
+       // imageurl=(ImageView)findViewById(R.id.imageView);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

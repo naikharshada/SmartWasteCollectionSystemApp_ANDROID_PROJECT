@@ -21,16 +21,23 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/address"
-                style="@style/viewParent.headerText"
+                style="@style/viewParent.headerText.NoMode"
                 android:layout_alignParentLeft="true"
+                android:text="Waste location: "
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/addr"
+                style="@style/modifiedEditText"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="90dp"
                 android:hint="mumbai"
                 android:textSize="12sp" />
 
 
             <TextView
-                style="@style/viewParent.headerText"
-                android:layout_below="@+id/address"
+                style="@style/viewParent.headerText.NoMode"
+                android:layout_below="@+id/addr"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
@@ -40,8 +47,8 @@
 
             <TextView
                 android:id="@+id/waste_category"
-                style="@style/viewParent.headerText"
-                android:layout_below="@id/address"
+                style="@style/modifiedEditText"
+                android:layout_below="@id/addr"
                 android:layout_marginStart="95dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"

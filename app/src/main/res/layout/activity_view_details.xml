@@ -17,7 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -86,19 +86,19 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp">
 
-                    <TextView
-                        style="@style/viewParent.headerText"
-                        android:layout_alignParentLeft="true"
-                        android:text="Waste location: "
-                        android:textSize="12sp" />
+                        <TextView
+                            style="@style/viewParent.headerText"
+                            android:layout_alignParentLeft="true"
+                            android:text="Waste location: "
+                            android:textSize="12sp" />
 
-                    <TextView
-                        android:id="@+id/address"
-                        style="@style/modifiedEditText"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginStart="90dp"
-                        android:hint="mumbai"
-                        android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/address1"
+                            style="@style/modifiedEditText"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginStart="90dp"
+                            android:hint="mumbai"
+                            android:textSize="12sp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -153,8 +153,8 @@
 
 
                         <TextView
-                            style="@style/modifiedEditText"
                             android:id="@+id/detail_phone"
+                            style="@style/modifiedEditText"
                             android:layout_marginStart="145dp"
                             android:hint="123456785"
                             android:textSize="12sp"

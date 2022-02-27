@@ -48,7 +48,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.Category_waste.setText(userData.getCategory());
         Glide.with(holder.imageurl.getContext()).load(userDataArrayList.get(position).getImageurl()).into(holder.imageurl);
 
-        // holder.image.setImageResource(userData.getImageUrl());
 
         holder.viewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,10 +79,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            Address = itemView.findViewById(R.id.address);
+            Address = itemView.findViewById(R.id.addr);
             Category_waste = itemView.findViewById(R.id.waste_category);
             viewDetails = itemView.findViewById(R.id.cirViewButton);
-            //image = itemView.findViewById(R.id.garbage_pic);
             imageurl = (ImageView)itemView.findViewById(R.id.imageView);
         }
     }

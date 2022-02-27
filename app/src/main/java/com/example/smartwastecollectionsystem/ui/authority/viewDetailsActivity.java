@@ -16,7 +16,7 @@ import com.example.smartwastecollectionsystem.R;
 public class viewDetailsActivity extends AppCompatActivity {
 
     private ImageView backtodetails, wastePicture;
-    private TextView addr, cat, eml, pho;
+    private TextView addrs, cat, eml, pho;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,28 +25,21 @@ public class viewDetailsActivity extends AppCompatActivity {
         changeStatusBarColor();
 
         backtodetails = findViewById(R.id.back_details);
+
         wastePicture = findViewById(R.id.garbage_pic);
-        addr = findViewById(R.id.address);
-        cat = findViewById(R.id.Category);
+        addrs = findViewById(R.id.address1);
+       cat = findViewById(R.id.Category);
         eml = findViewById(R.id.detail_Id);
         pho = findViewById(R.id.detail_phone);
 
 
-        addr.setText(getIntent().getStringExtra("Address"));
+      addrs.setText(getIntent().getStringExtra("Address"));
         wastePicture.setImageResource(getIntent().getIntExtra("imageurl", 0));
-        //wastePicture.setText(getIntent().getStringExtra("image"));
+       // wastePicture.setText(getIntent().getStringExtra("image"));
         cat.setText(getIntent().getStringExtra("Category_waste"));
         eml.setText(getIntent().getStringExtra("emailID"));
         pho.setText(getIntent().getStringExtra("phonenumber"));
 
-       /* wastePicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(browserIntent);
-
-            }
-        });*/
 
         backtodetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +48,7 @@ public class viewDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
