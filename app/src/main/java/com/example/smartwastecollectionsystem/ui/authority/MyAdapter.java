@@ -1,12 +1,12 @@
 package com.example.smartwastecollectionsystem.ui.authority;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,13 +46,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.Address.setText(userData.getAddress());
         holder.Category_waste.setText(userData.getCategory());
+        holder.emailID.setText(userData.getEmail());
+        holder.phonenumber.setText(userData.getPhone());
         Glide.with(holder.imageurl.getContext()).load(userDataArrayList.get(position).getImageurl()).into(holder.imageurl);
 
 
-        holder.viewDetails.setOnClickListener(new View.OnClickListener() {
+        holder.acceptDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, viewDetailsActivity.class);
+               /* Intent intent = new Intent(context, viewDetailsActivity.class);
                 intent.putExtra("Address", temp.getAddress());
                 intent.putExtra("imageurl", temp.getImageurl());
                 intent.putExtra("Category_waste", temp.getCategory());
@@ -60,7 +62,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 intent.putExtra("phonenumber",temp.getPhone());
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                context.startActivity(intent);*/
+                Toast.makeText(context,"Request accepted successfully", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -74,14 +77,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         TextView Address, Category_waste, emailID, phonenumber;
         ImageView imageurl;
-        CircularProgressButton viewDetails;
+        CircularProgressButton acceptDetails;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             Address = itemView.findViewById(R.id.addr);
             Category_waste = itemView.findViewById(R.id.waste_category);
-            viewDetails = itemView.findViewById(R.id.cirViewButton);
+            acceptDetails = itemView.findViewById(R.id.cirAcceptButton);
+            emailID = itemView.findViewById(R.id.user_Id);
+            phonenumber = itemView.findViewById(R.id.user_phone);
             imageurl = (ImageView)itemView.findViewById(R.id.imageView);
         }
     }
