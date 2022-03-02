@@ -25,7 +25,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.localuser.SuccessActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.localuser.About_usActivity"
             android:exported="false" />
