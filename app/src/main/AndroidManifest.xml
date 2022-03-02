@@ -24,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.localuser.SuccessActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.localuser.About_usActivity"
             android:exported="false" />
         <activity
