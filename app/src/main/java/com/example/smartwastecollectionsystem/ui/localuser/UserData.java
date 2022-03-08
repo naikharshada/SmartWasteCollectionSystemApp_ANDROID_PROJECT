@@ -7,8 +7,8 @@ public class UserData {
     private String phone;
     private String password;
     private String Category;
-    private double Longitude;
-    private double Latitude;
+    private float Longitude;
+    private float Latitude;
     private String Address;
     private String Locality;
     private String imageurl;
@@ -17,7 +17,7 @@ public class UserData {
     public UserData() {
     }
 
-    public UserData(String userId, String username, String email, String phone, String password, String category, double longitude, double latitude, String address, String locality, String imageurl) {
+    public UserData(String userId, String username, String email, String phone, String password, String category, float longitude, float latitude, String address, String locality, String imageurl) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -80,19 +80,19 @@ public class UserData {
         Category = category;
     }
 
-    public double getLongitude() {
+    public float getLongitude() {
         return Longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(float longitude) {
         Longitude = longitude;
     }
 
-    public double getLatitude() {
+    public float getLatitude() {
         return Latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(float latitude) {
         Latitude = latitude;
     }
 

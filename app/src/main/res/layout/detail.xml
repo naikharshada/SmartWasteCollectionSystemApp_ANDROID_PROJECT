@@ -32,8 +32,8 @@
                 android:id="@+id/text_loc"
                 style="@style/viewParent.headerText.NoMode"
                 android:layout_alignParentLeft="true"
-                android:text="Waste location: "
                 android:layout_marginTop="5dp"
+                android:text="Waste location: "
                 android:textSize="12sp" />
 
             <TextView
@@ -41,7 +41,7 @@
                 style="@style/modifiedEditText"
                 android:layout_below="@+id/text_loc"
                 android:layout_alignParentLeft="true"
-                android:layout_marginEnd="108dp"
+                android:layout_marginEnd="100dp"
                 android:hint="mumbai"
                 android:textSize="12sp" />
 
@@ -119,15 +119,30 @@
 
 
             <ImageView
-                android:id="@+id/delete_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/location_detail"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/user_phone"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/ic_delete" />
+                android:src="@drawable/loc_icon1" />
+
+            <TextView
+                android:id="@+id/lati"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="latitude"/>
+
+            <TextView
+                android:id="@+id/longi"
+                android:visibility="gone"
+                android:layout_below="@+id/lati"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="longitude"/>
 
 
         </RelativeLayout>
