@@ -134,7 +134,6 @@ public class MapActivity extends AppCompatActivity {
                             }
                         });
 
-
                        /* databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("Address").setValue(textadd.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {

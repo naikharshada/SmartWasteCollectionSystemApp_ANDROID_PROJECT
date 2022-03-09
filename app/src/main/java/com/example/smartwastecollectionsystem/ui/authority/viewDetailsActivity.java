@@ -34,7 +34,7 @@ public class viewDetailsActivity extends AppCompatActivity {
 
 
       addrs.setText(getIntent().getStringExtra("Address"));
-        wastePicture.setImageResource(getIntent().getIntExtra("imageurl", 0));
+        //wastePicture.setImageResource(getIntent().getIntExtra("imageurl", 0));
        // wastePicture.setText(getIntent().getStringExtra("image"));
         cat.setText(getIntent().getStringExtra("Category_waste"));
         eml.setText(getIntent().getStringExtra("emailID"));

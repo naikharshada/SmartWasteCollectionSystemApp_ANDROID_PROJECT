@@ -45,6 +45,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return new MyViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
 
@@ -75,21 +76,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         });
 
 
-
-
-        holder.acceptDetails.setOnClickListener(new View.OnClickListener() {
+        holder.viewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Intent intent = new Intent(context, viewDetailsActivity.class);
+                //holder.acceptDetails.setClickable(false);
+               // holder.viewDetails.setEnabled(false);
+                Intent intent = new Intent(context, viewDetailsActivity.class);
                 intent.putExtra("Address", temp.getAddress());
-                intent.putExtra("imageurl", temp.getImageurl());
+                //intent.putExtra("imageurl", temp.getImageurl());
                 intent.putExtra("Category_waste", temp.getCategory());
                 intent.putExtra("emailID", temp.getEmail());
                 intent.putExtra("phonenumber",temp.getPhone());
-
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);*/
-                Toast.makeText(context,"Request accepted successfully", Toast.LENGTH_SHORT).show();
+                context.startActivity(intent);
+               // Toast.makeText(context,"Request accepted successfully", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -103,7 +103,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         TextView Address, Category_waste, emailID, phonenumber, Latitude, Longitude;
         ImageView imageurl, gotomap;
-        CircularProgressButton acceptDetails;
+        CircularProgressButton viewDetails;
         String Lat, Lon;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -111,7 +111,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
             Address = itemView.findViewById(R.id.addr);
             Category_waste = itemView.findViewById(R.id.waste_category);
-            acceptDetails = itemView.findViewById(R.id.cirAcceptButton);
+            viewDetails = itemView.findViewById(R.id.cirDetailsButton);
             emailID = itemView.findViewById(R.id.user_Id);
             phonenumber = itemView.findViewById(R.id.user_phone);
             imageurl = (ImageView)itemView.findViewById(R.id.imageView);

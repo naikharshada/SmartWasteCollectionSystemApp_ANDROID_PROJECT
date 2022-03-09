@@ -103,7 +103,7 @@
                 android:textSize="12sp" />
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-                android:id="@+id/cirAcceptButton"
+                android:id="@+id/cirDetailsButton"
                 style="@style/loginButton"
                 android:layout_width="145dp"
                 android:layout_height="32dp"
@@ -111,7 +111,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
-                android:text="Accept Request"
+                android:text="View Details"
                 app:initialCornerAngle="27dp"
                 app:spinning_bar_color="#FFF"
                 app:spinning_bar_padding="6dp"
