@@ -1,6 +1,7 @@
 package com.example.smartwastecollectionsystem.ui.authority;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,8 +17,9 @@ import com.example.smartwastecollectionsystem.R;
 
 public class viewDetailsActivity extends AppCompatActivity {
 
-    private ImageView backtodetails, wastePicture;
-    private TextView addrs, cat, eml, pho;
+    private ImageView backtodetails, gotomap;
+    private TextView addrs, cat, eml, pho, rd, rt, latitude, longitude;
+    String La, Lo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +28,39 @@ public class viewDetailsActivity extends AppCompatActivity {
         changeStatusBarColor();
 
         backtodetails = findViewById(R.id.back_details);
-
-        wastePicture = findViewById(R.id.garbage_pic);
+        gotomap = findViewById(R.id.location_detail);
         addrs = findViewById(R.id.address1);
-       cat = findViewById(R.id.Category);
+        latitude = findViewById(R.id.lat);
+        longitude = findViewById(R.id.lon);
+        cat = findViewById(R.id.Category);
+        rd = findViewById(R.id.request_date);
+        rt = findViewById(R.id.request_time);
         eml = findViewById(R.id.detail_Id);
         pho = findViewById(R.id.detail_phone);
 
 
       addrs.setText(getIntent().getStringExtra("Address"));
-        //wastePicture.setImageResource(getIntent().getIntExtra("imageurl", 0));
-       // wastePicture.setText(getIntent().getStringExtra("image"));
+        latitude.setText(getIntent().getStringExtra("Latitude"));
+        longitude.setText(getIntent().getStringExtra("Longitude"));
+        rd.setText(getIntent().getStringExtra("rdate"));
+        rt.setText(getIntent().getStringExtra("rtime"));
         cat.setText(getIntent().getStringExtra("Category_waste"));
         eml.setText(getIntent().getStringExtra("emailID"));
         pho.setText(getIntent().getStringExtra("phonenumber"));
 
+        La = latitude.getText().toString();
+        Lo = longitude.getText().toString();
+
+        gotomap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(viewDetailsActivity.this,"Opening Google Map...", Toast.LENGTH_SHORT).show();
+                Uri mapUri = Uri.parse("google.navigation:q="+La+","+Lo);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
 
         backtodetails.setOnClickListener(new View.OnClickListener() {
             @Override

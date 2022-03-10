@@ -29,9 +29,9 @@
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:textSize="20sp"
                     android:text="Details page!"
-                    android:textColor="@color/whiteTextColor" />
+                    android:textColor="@color/whiteTextColor"
+                    android:textSize="20sp" />
 
                 <ImageView
                     android:layout_width="188dp"
@@ -56,35 +56,16 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
-
 
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/viewParent.headerText.NoMode"
-                            android:layout_alignParentLeft="true"
-                            android:text="waste picture: "
-                            android:textSize="12sp" />
-
-                        <ImageView
-                            android:id="@+id/garbage_pic"
-                            android:layout_width="220dp"
-                            android:layout_height="178dp"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="80dp"
-                            android:src="@drawable/ic_launcher_background" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp">
 
                         <TextView
                             style="@style/viewParent.headerText"
@@ -99,12 +80,23 @@
                             android:layout_marginStart="90dp"
                             android:hint="mumbai"
                             android:textSize="12sp" />
+
+
+                        <ImageView
+                            android:id="@+id/location_detail"
+                            android:layout_width="37dp"
+                            android:layout_height="37dp"
+                            android:layout_below="@+id/address1"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/loc_icon1" />
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp">
+                        android:layout_marginTop="5dp">
 
                         <TextView
                             style="@style/viewParent.headerText"
@@ -161,6 +153,63 @@
                             app:prefixText="+91" />
                     </RelativeLayout>
 
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp">
+
+                        <TextView
+                            style="@style/viewParent.headerText"
+                            android:layout_alignParentLeft="true"
+                            android:text="Request Time: "
+                            android:textSize="12sp" />
+
+
+                        <TextView
+                            android:id="@+id/request_time"
+                            style="@style/modifiedEditText"
+                            android:layout_marginStart="80dp"
+                            android:hint="15:00 PM"
+                            android:textSize="12sp"
+                            app:prefixText="+91" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp">
+
+                        <TextView
+                            style="@style/viewParent.headerText"
+                            android:layout_alignParentLeft="true"
+                            android:text="Request Date: "
+                            android:textSize="12sp" />
+
+
+                        <TextView
+                            android:id="@+id/request_date"
+                            style="@style/modifiedEditText"
+                            android:layout_marginStart="80dp"
+                            android:hint="3/9/11"
+                            android:textSize="12sp"
+                            app:prefixText="+91" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/lat"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="latitude"/>
+
+                    <TextView
+                        android:id="@+id/lon"
+                        android:visibility="gone"
+                        android:layout_below="@+id/lat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="longitude"/>
+
                     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                         android:id="@+id/cirAcceptButton"
                         style="@style/loginButton"
@@ -171,9 +220,6 @@
                         app:spinning_bar_color="#FFF"
                         app:spinning_bar_padding="6dp"
                         app:spinning_bar_width="4dp" />
-
-
-
 
 
                 </LinearLayout>
@@ -205,7 +251,7 @@
         android:layout_marginRight="11dp"
         android:layout_marginBottom="20dp"
         android:adjustViewBounds="false"
-        android:src="@drawable/ic_back_img" />
+        android:src="@drawable/ic_back_img1" />
 
 </RelativeLayout>
 

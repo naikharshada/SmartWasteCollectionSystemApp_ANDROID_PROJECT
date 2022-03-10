@@ -55,8 +55,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.Address.setText(userData.getAddress());
         holder.Category_waste.setText(userData.getCategory());
-        holder.emailID.setText(userData.getEmail());
-        holder.phonenumber.setText(userData.getPhone());
+       // holder.emailID.setText(userData.getEmail());
+        //holder.phonenumber.setText(userData.getPhone());
         holder.Latitude.setText(userData.getLatitude()+"");
         holder.Longitude.setText(userData.getLongitude()+"");
         Glide.with(holder.imageurl.getContext()).load(userDataArrayList.get(position).getImageurl()).into(holder.imageurl);
@@ -64,7 +64,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.Lat = holder.Latitude.getText().toString();
         holder.Lon = holder.Longitude.getText().toString();
 
-        holder.gotomap.setOnClickListener(new View.OnClickListener() {
+        holder.Address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context,"Opening Google Map...", Toast.LENGTH_SHORT).show();
@@ -83,13 +83,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                // holder.viewDetails.setEnabled(false);
                 Intent intent = new Intent(context, viewDetailsActivity.class);
                 intent.putExtra("Address", temp.getAddress());
-                //intent.putExtra("imageurl", temp.getImageurl());
+                intent.putExtra("rdate", temp.getRequestDate());
+                intent.putExtra("rtime", temp.getRequestTime());
+                intent.putExtra("Latitude",temp.getLatitude()+"");
+                intent.putExtra("Longitude", temp.getLongitude()+"");
                 intent.putExtra("Category_waste", temp.getCategory());
                 intent.putExtra("emailID", temp.getEmail());
                 intent.putExtra("phonenumber",temp.getPhone());
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
-               // Toast.makeText(context,"Request accepted successfully", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -101,8 +103,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView Address, Category_waste, emailID, phonenumber, Latitude, Longitude;
-        ImageView imageurl, gotomap;
+        TextView Address, Category_waste, emailID, phonenumber, Latitude, Longitude, rdate, rtime;
+        ImageView imageurl;
         CircularProgressButton viewDetails;
         String Lat, Lon;
 
@@ -112,10 +114,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             Address = itemView.findViewById(R.id.addr);
             Category_waste = itemView.findViewById(R.id.waste_category);
             viewDetails = itemView.findViewById(R.id.cirDetailsButton);
-            emailID = itemView.findViewById(R.id.user_Id);
-            phonenumber = itemView.findViewById(R.id.user_phone);
             imageurl = (ImageView)itemView.findViewById(R.id.imageView);
-            gotomap = (ImageView) itemView.findViewById(R.id.location_detail);
             Latitude = itemView.findViewById(R.id.lati);
             Longitude = itemView.findViewById(R.id.longi);
         }
