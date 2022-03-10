@@ -17,9 +17,6 @@ import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -36,8 +33,6 @@ public class CategoryActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private FirebaseFirestore dbroot;
     private FirebaseAuth auth;
-    private FirebaseUser firebaseUser;
-    private DatabaseReference databaseReference;
     String userID;
 
     @Override
@@ -49,16 +44,9 @@ public class CategoryActivity extends AppCompatActivity {
         backtomap = findViewById(R.id.back_Map);
         submit = findViewById(R.id.cirSubmitButton);
         radioGroup = findViewById(R.id.radiogroup);
-        // dry = findViewById(R.id.dry_waste);
-        // wet = findViewById(R.id.wet_waste);
-        //electronic = findViewById(R.id.electronic_waste);
-        //unknown = findViewById(R.id.not_known);
         auth = FirebaseAuth.getInstance();
-        firebaseUser = auth.getCurrentUser();
 
         dbroot = FirebaseFirestore.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-
 
         backtomap.setOnClickListener(new View.OnClickListener() {
             @Override
