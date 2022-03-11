@@ -1,8 +1,5 @@
 package com.example.smartwastecollectionsystem.ui.authority;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -11,31 +8,35 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.smartwastecollectionsystem.R;
-import com.example.smartwastecollectionsystem.ui.localuser.HomePageActivity;
-import com.example.smartwastecollectionsystem.ui.localuser.UserData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
 public class HomePage1Activity extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private FirebaseUser firebaseUser;
+    private FirebaseFirestore firestore;
     private CircularProgressButton updatebtn;
     private DatabaseReference databaseReference;
     private EditText br, em, ph, pa;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +50,11 @@ public class HomePage1Activity extends AppCompatActivity {
         pa = findViewById(R.id.db_Password);
         updatebtn = findViewById(R.id.cirUpdateButton);
         auth = FirebaseAuth.getInstance();
-        firebaseUser = auth.getCurrentUser();
+        firestore = FirebaseFirestore.getInstance();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        userID = auth.getCurrentUser().getUid();
+
+        /*databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -68,6 +71,17 @@ public class HomePage1Activity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(HomePage1Activity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
 
+
+            }
+        });*/
+        DocumentReference documentReference  = firestore.collection("Municipal").document(userID);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                br.setText(value.getString("BranchName"));
+                em.setText(value.getString("memail"));
+                ph.setText(value.getString("mphone"));
+                pa.setText(value.getString("mpassword"));
 
             }
         });
@@ -104,18 +118,40 @@ public class HomePage1Activity extends AppCompatActivity {
                             snackbarView.setBackgroundColor(getResources().getColor(R.color.black));
                             snackbar.show();
                         } else {
-
                             updatedata(br_, em_, ph_, pa_);
                         }
                     }
                 }
             }
         });
-
-
     }
 
     private void updatedata(String br_, String em_, String ph_, String pa_) {
+        Map<String, Object> User = new HashMap();
+        User.put("BranchName",br_);
+        User.put("memail",em_);
+        User.put("mphone",ph_);
+        User.put("mpassword",pa_);
+        firestore.collection("Municipal").document(userID).update(User).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+
+
+                    Toast.makeText(HomePage1Activity.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    Toast.makeText(HomePage1Activity.this,"Failed to Update",Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
+
+    }
+
+   /* private void updatedata(String br_, String em_, String ph_, String pa_) {
         HashMap User = new HashMap();
         User.put("BranchName",br_);
         User.put("memail",em_);
@@ -139,7 +175,7 @@ public class HomePage1Activity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
     private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

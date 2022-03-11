@@ -17,8 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -33,10 +31,8 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 public class HomePageActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private FirebaseUser firebaseUser;
     private FirebaseFirestore firestore;
     private CircularProgressButton updatebtn;
-    private DatabaseReference databaseReference;
     private EditText na, em, ph, pa;
     String userID;
 
@@ -52,7 +48,6 @@ public class HomePageActivity extends AppCompatActivity {
         pa = findViewById(R.id.db_Password);
         updatebtn = findViewById(R.id.cirUpdateButton);
         auth = FirebaseAuth.getInstance();
-        firebaseUser = auth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
 
         userID = auth.getCurrentUser().getUid();

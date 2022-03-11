@@ -18,6 +18,7 @@ import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -102,19 +103,19 @@ public class viewDetailsActivity extends AppCompatActivity {
                 saveCurrentTime = currentTime.format(calForDate.getTime());
 
                 userID = auth.getCurrentUser().getUid();
+                CollectionReference documentReference = dbroot.collection("Municipal").document(userID).collection("acceptList");
                 Map<String,Object> User = new HashMap<>();
                 User.put("acceptDate", saveCurrentDate);
                 User.put("acceptTime", saveCurrentTime);
                 User.put("wasteLocation", addrs.getText().toString());
                 User.put("wasteCategory", cat.getText().toString());
                 User.put("userMail", eml.getText().toString());
-                dbroot.collection("Municipal").document(userID).collection("acceptList").add(User)
-                       .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                           @Override
-                           public void onComplete(@NonNull Task<DocumentReference> task) {
-                               Toast.makeText(viewDetailsActivity.this, "Request accepted successfully", Toast.LENGTH_SHORT).show();
-                           }
-                       });
+                documentReference.add(User).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                       Toast.makeText(viewDetailsActivity.this, "request accepted successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
