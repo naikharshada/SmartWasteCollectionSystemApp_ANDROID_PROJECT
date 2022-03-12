@@ -21,7 +21,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -37,7 +36,6 @@ public class Register1Activity extends AppCompatActivity {
     private CircularProgressButton registerbtn;
     private TextView signin_btn;
     private FirebaseAuth auth;
-    private DatabaseReference databaseReference;
     private FirebaseFirestore dbroot;
     String userID;
 
@@ -105,35 +103,6 @@ public class Register1Activity extends AppCompatActivity {
         auth.createUserWithEmailAndPassword(memail_ , mpassword_).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-               /* if (task.isSuccessful()) {
-                    FirebaseUser rUser = auth.getCurrentUser();
-                    assert rUser != null;
-                    String userId = rUser.getUid();
-                    databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
-                    HashMap<String, String> hashMap = new HashMap<>();
-                    hashMap.put("userID", userId);
-                    hashMap.put("BranchName", branchname_);
-                    hashMap.put("memail", memail_);
-                    hashMap.put("mphone", mphonenumber_);
-                    hashMap.put("mpassword", mpassword_);
-                    databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-
-                                Toast.makeText(Register1Activity.this,"Registered Successfully" , Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Register1Activity.this, Login1Activity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-
-                            } else {
-                                Toast.makeText(Register1Activity.this, (task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                } else {
-                    Toast.makeText(Register1Activity.this,  (task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                }*/
 
                 userID = auth.getCurrentUser().getUid();
                 DocumentReference documentReference = dbroot.collection("Municipal").document(userID);

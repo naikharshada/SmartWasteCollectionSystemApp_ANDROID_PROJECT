@@ -12,15 +12,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -33,7 +36,7 @@ public class viewDetailsActivity extends AppCompatActivity {
 
     private ImageView backtodetails, gotomap;
     private CircularProgressButton acceptRequest;
-    private TextView addrs, cat, eml, pho, rd, rt, latitude, longitude;
+    private TextView addrs, cat, eml, pho, rd, rt, latitude, longitude, branch_name, m_eid;
     String La, Lo;
     private FirebaseFirestore dbroot;
     private FirebaseAuth auth;
@@ -58,7 +61,19 @@ public class viewDetailsActivity extends AppCompatActivity {
         pho = findViewById(R.id.detail_phone);
         auth = FirebaseAuth.getInstance();
         dbroot = FirebaseFirestore.getInstance();
+        branch_name = findViewById(R.id.m_name);
+        m_eid = findViewById(R.id.m_id);
 
+        userID = auth.getCurrentUser().getUid();
+
+        DocumentReference documentReference  = dbroot.collection("Municipal").document(userID);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                branch_name.setText(value.getString("BranchName"));
+                m_eid.setText(value.getString("memail"));
+            }
+        });
 
         addrs.setText(getIntent().getStringExtra("Address"));
         latitude.setText(getIntent().getStringExtra("Latitude"));
@@ -68,6 +83,7 @@ public class viewDetailsActivity extends AppCompatActivity {
         cat.setText(getIntent().getStringExtra("Category_waste"));
         eml.setText(getIntent().getStringExtra("emailID"));
         pho.setText(getIntent().getStringExtra("phonenumber"));
+
 
         La = latitude.getText().toString();
         Lo = longitude.getText().toString();
@@ -93,6 +109,9 @@ public class viewDetailsActivity extends AppCompatActivity {
         acceptRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                acceptRequest.setEnabled(true);
+                acceptRequest.setEnabled(false);
+
                 String saveCurrentDate, saveCurrentTime;
                 Calendar calForDate = Calendar.getInstance();
 
@@ -103,19 +122,29 @@ public class viewDetailsActivity extends AppCompatActivity {
                 saveCurrentTime = currentTime.format(calForDate.getTime());
 
                 userID = auth.getCurrentUser().getUid();
-                CollectionReference documentReference = dbroot.collection("Municipal").document(userID).collection("acceptList");
                 Map<String,Object> User = new HashMap<>();
                 User.put("acceptDate", saveCurrentDate);
                 User.put("acceptTime", saveCurrentTime);
                 User.put("wasteLocation", addrs.getText().toString());
                 User.put("wasteCategory", cat.getText().toString());
                 User.put("userMail", eml.getText().toString());
-                documentReference.add(User).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                User.put("memail", m_eid.getText().toString());
+                User.put("BranchName", branch_name.getText().toString());
+                dbroot.collection("acceptList").add(User).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
-                       Toast.makeText(viewDetailsActivity.this, "request accepted successfully", Toast.LENGTH_SHORT).show();
+                      Toast.makeText(viewDetailsActivity.this, "Request accepted successfully", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+                dbroot.collection("Municipal").document(userID).collection("aList").add(User).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                       // Toast.makeText(viewDetailsActivity.this, "Request accepted successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
             }
         });
     }

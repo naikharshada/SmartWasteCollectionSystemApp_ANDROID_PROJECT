@@ -210,6 +210,20 @@
                         android:layout_height="wrap_content"
                         android:text="longitude"/>
 
+                    <TextView
+                        android:id="@+id/m_id"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="m_ID"/>
+
+                    <TextView
+                        android:id="@+id/m_name"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="m_Name"/>
+
                     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                         android:id="@+id/cirAcceptButton"
                         style="@style/loginButton"

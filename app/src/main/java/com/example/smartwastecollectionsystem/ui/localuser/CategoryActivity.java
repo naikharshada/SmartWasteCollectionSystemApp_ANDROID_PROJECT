@@ -100,15 +100,6 @@ public class CategoryActivity extends AppCompatActivity {
 
             }
         });
-       /* databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("Category").setValue(category).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(getApplicationContext(), "Category saved successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(CategoryActivity.this, ClickPictureActivity.class));
-            }
-        });*/
-
-
 
     }
 

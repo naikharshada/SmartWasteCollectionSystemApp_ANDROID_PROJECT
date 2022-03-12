@@ -54,26 +54,6 @@ public class HomePage1Activity extends AppCompatActivity {
 
         userID = auth.getCurrentUser().getUid();
 
-        /*databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User1Data user1Data = snapshot.getValue(User1Data.class);
-                assert user1Data!= null;
-                br.setText(user1Data.getBranchName());
-                em.setText(user1Data.getMemail());
-                ph.setText(user1Data.getMphone());
-                pa.setText(user1Data.getMpassword());
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(HomePage1Activity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-
-
-            }
-        });*/
         DocumentReference documentReference  = firestore.collection("Municipal").document(userID);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -151,31 +131,6 @@ public class HomePage1Activity extends AppCompatActivity {
 
     }
 
-   /* private void updatedata(String br_, String em_, String ph_, String pa_) {
-        HashMap User = new HashMap();
-        User.put("BranchName",br_);
-        User.put("memail",em_);
-        User.put("mphone",ph_);
-        User.put("mpassword",pa_);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        databaseReference.child(firebaseUser.getUid()).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
-            @Override
-            public void onComplete(@NonNull Task task) {
-                if (task.isSuccessful()){
-
-
-                    Toast.makeText(HomePage1Activity.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
-
-                }else {
-
-                    Toast.makeText(HomePage1Activity.this,"Failed to Update",Toast.LENGTH_SHORT).show();
-
-                }
-
-            }
-        });
-
-    }*/
 
     private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
