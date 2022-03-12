@@ -10,8 +10,8 @@
         android:title="Home"/>
 
     <item android:id="@+id/notify"
-        android:icon="@drawable/ic_notifications"
-        android:title="Notification"/>
+        android:icon="@drawable/ic_description"
+        android:title="History"/>
 
     <item android:id="@+id/feedback"
         android:icon="@drawable/ic_feedback"

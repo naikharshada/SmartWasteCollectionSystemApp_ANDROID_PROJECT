@@ -4,24 +4,31 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/button_background_blue.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_accepted.xml" value="0.1865" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_add_img.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_back_img.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_back_img1.xml" value="0.1675" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_delete.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_description.xml" value="0.1865" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_google_plus.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_list.xml" value="0.1865" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_login_hero.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_menu.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_more.xml" value="0.1865" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_notifications.xml" value="0.1865" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_register_hero.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/drawable/ic_side_bg.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_about_us.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_accepted.xml" value="0.2421875" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_category.xml" value="0.264" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_click_picture.xml" value="0.2" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_details.xml" value="0.2" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_feedback1.xml" value="0.2421875" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_forgot_pass.xml" value="0.264" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_forgot_pass1.xml" value="0.264" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_history1.xml" value="0.2421875" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_home_page.xml" value="0.2421875" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_home_page1.xml" value="0.2421875" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/activity_login.xml" value="0.264" />
@@ -45,6 +52,8 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/layout/nav_header.xml" value="0.19537037037037036" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/menu/iconmenu.xml" value="0.19537037037037036" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/menu/iconmenu_user.xml" value="0.2421875" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/menu/muaccepted_menu.xml" value="0.2421875" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/menu/muhistory_menu.xml" value="0.2421875" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/SmartWasteCollectionSystem/app/src/main/res/xml/file_paths.xml" value="0.2421875" />
       </map>
     </option>

@@ -84,7 +84,7 @@ public class DetailsActivity extends AppCompatActivity {
                         break;
 
                     case R.id.notify:
-                        Intent intent2 = new Intent(DetailsActivity.this, Notify1Activity.class);
+                        Intent intent2 = new Intent(DetailsActivity.this, History1Activity.class);
                         startActivity(intent2);
                         break;
 
