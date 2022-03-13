@@ -20,33 +20,43 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/h_loc"
+                android:id="@+id/toast"
                 style="@style/viewParent.headerText.NoMode"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="5dp"
+                android:text="Request you have accepted "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/r_loc"
+                style="@style/viewParent.headerText.NoMode"
+                android:layout_below="@id/toast"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="20dp"
                 android:text="Waste location: "
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/h_addr"
+                android:id="@+id/r_addr"
                 style="@style/modifiedEditText"
-                android:layout_below="@id/h_loc"
+                android:layout_below="@id/r_loc"
                 android:layout_alignParentLeft="true"
                 android:hint="mumbai"
                 android:textSize="12sp" />
 
+
             <TextView
                 style="@style/viewParent.headerText.NoMode"
-                android:layout_below="@+id/h_addr"
+                android:layout_below="@+id/r_addr"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="10dp"
                 android:text="Waste Category: "
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/h_category"
+                android:id="@+id/r_category"
                 style="@style/modifiedEditText"
-                android:layout_below="@id/h_addr"
+                android:layout_below="@id/r_addr"
                 android:layout_marginStart="95dp"
                 android:layout_marginTop="10dp"
                 android:hint="not known"
@@ -54,73 +64,58 @@
 
             <TextView
                 style="@style/viewParent.headerText.NoMode"
-                android:layout_below="@+id/h_category"
+                android:layout_below="@+id/r_category"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="10dp"
                 android:text="Branch Name: "
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/hmu_name"
+                android:id="@+id/r_name"
                 style="@style/modifiedEditText"
-                android:layout_below="@id/h_category"
+                android:layout_below="@id/r_category"
                 android:layout_marginStart="85dp"
                 android:layout_marginTop="10dp"
                 android:hint="borivali"
                 android:textSize="12sp" />
 
-            <TextView
-                style="@style/viewParent.headerText.NoMode"
-                android:layout_below="@+id/hmu_name"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="10dp"
-                android:text="Municipal Email: "
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/hmu_email"
-                style="@style/modifiedEditText"
-                android:layout_below="@id/hmu_name"
-                android:layout_marginStart="95dp"
-                android:layout_marginTop="10dp"
-                android:hint="borivali@gov.in"
-                android:textSize="12sp" />
 
             <TextView
                 style="@style/viewParent.headerText.NoMode"
-                android:layout_below="@+id/hmu_email"
+                android:layout_below="@+id/r_name"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="10dp"
                 android:text="User Email: "
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/h_email"
+                android:id="@+id/r_email"
                 style="@style/modifiedEditText"
-                android:layout_below="@id/hmu_email"
+                android:layout_below="@id/r_name"
                 android:layout_marginStart="68dp"
                 android:layout_marginTop="10dp"
                 android:hint="nia@gmail.com"
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/hre_date"
+                android:id="@+id/r_date"
                 style="@style/viewParent.headerText.NoMode"
-                android:layout_below="@+id/h_email"
+                android:layout_below="@+id/r_email"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="20dp"
                 android:hint="3/09/12"
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/hre_time"
+                android:id="@+id/r_time"
                 style="@style/viewParent.headerText.NoMode"
-                android:layout_below="@+id/h_email"
+                android:layout_below="@+id/r_email"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="70dp"
                 android:layout_marginTop="20dp"
                 android:hint="15:00:00 PM"
                 android:textSize="15sp" />
+
 
 
         </RelativeLayout>
