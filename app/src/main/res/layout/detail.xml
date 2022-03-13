@@ -61,9 +61,9 @@
             <TextView
                 style="@style/viewParent.headerText.NoMode"
                 android:layout_below="@+id/addr"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="120dp"
                 android:layout_alignParentLeft="true"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="10dp"
                 android:text="Waste Category: "
                 android:textSize="12sp" />
 
@@ -73,7 +73,7 @@
                 style="@style/modifiedEditText"
                 android:layout_below="@id/addr"
                 android:layout_marginStart="210dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:hint="not known"
                 android:textSize="12sp" />
 

@@ -40,7 +40,6 @@ public class DetailsActivity extends AppCompatActivity {
    ArrayList<UserData> userDataArrayList;
     MyAdapter myAdapter;
     FirebaseFirestore db;
-    //ImageView  imageurl;
 
 
     @Override
@@ -49,7 +48,6 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         changeStatusBarColor();
 
-       // imageurl=(ImageView)findViewById(R.id.imageView);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
