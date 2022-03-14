@@ -103,7 +103,7 @@
                 android:layout_below="@+id/r_email"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="20dp"
-                android:hint="3/09/12"
+                android:hint="3/09/2022"
                 android:textSize="15sp" />
 
             <TextView
@@ -111,7 +111,7 @@
                 style="@style/viewParent.headerText.NoMode"
                 android:layout_below="@+id/r_email"
                 android:layout_alignParentLeft="true"
-                android:layout_marginStart="70dp"
+                android:layout_marginStart="90dp"
                 android:layout_marginTop="20dp"
                 android:hint="15:00:00 PM"
                 android:textSize="15sp" />
