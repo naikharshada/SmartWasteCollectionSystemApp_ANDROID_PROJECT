@@ -55,8 +55,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.Address.setText(userData.getAddress());
         holder.Category_waste.setText(userData.getCategory());
-       // holder.emailID.setText(userData.getEmail());
-        //holder.phonenumber.setText(userData.getPhone());
         holder.Latitude.setText(userData.getLatitude()+"");
         holder.Longitude.setText(userData.getLongitude()+"");
         Glide.with(holder.imageurl.getContext()).load(userDataArrayList.get(position).getImageurl()).into(holder.imageurl);
