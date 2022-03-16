@@ -110,7 +110,7 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
                         break;
 
                     case R.id.menu_notify:
-                        Intent intent2 = new Intent(ClickPictureActivity.this, NotifyActivity.class);
+                        Intent intent2 = new Intent(ClickPictureActivity.this, FeedActivity.class);
                         startActivity(intent2);
                         break;
 

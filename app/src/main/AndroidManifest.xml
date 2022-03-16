@@ -24,6 +24,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.localuser.FeedActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.authority.acceptedActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -37,9 +41,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.localuser.About_usActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.localuser.NotifyActivity"
             android:exported="false" />
         <activity
             android:name=".ui.authority.viewDetailsActivity"
