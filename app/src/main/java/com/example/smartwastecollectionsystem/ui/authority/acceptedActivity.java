@@ -37,7 +37,8 @@ public class acceptedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accepted);
 
-        userID = auth.getCurrentUser().getUid();
+        auth = FirebaseAuth.getInstance();
+       userID = auth.getCurrentUser().getUid();
 
         Toolbar tbl =(Toolbar) findViewById(R.id.btool);
         setSupportActionBar(tbl);
