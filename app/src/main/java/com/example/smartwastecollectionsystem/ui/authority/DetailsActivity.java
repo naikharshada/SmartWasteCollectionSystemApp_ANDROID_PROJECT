@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartwastecollectionsystem.R;
-import com.example.smartwastecollectionsystem.ui.localuser.UserData;
+import com.example.smartwastecollectionsystem.ui.localuser.requestModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -37,7 +37,7 @@ public class DetailsActivity extends AppCompatActivity {
    private ActionBarDrawerToggle toggle;
    private DrawerLayout drawerLayout;
     RecyclerView recyclerView;
-   ArrayList<UserData> userDataArrayList;
+   ArrayList<requestModel> userDataArrayList;
     MyAdapter myAdapter;
     FirebaseFirestore db;
 
@@ -64,7 +64,7 @@ public class DetailsActivity extends AppCompatActivity {
         toggle.syncState();
 
         db = FirebaseFirestore.getInstance();
-        userDataArrayList = new ArrayList<UserData>();
+        userDataArrayList = new ArrayList<requestModel>();
         myAdapter = new MyAdapter(DetailsActivity.this, userDataArrayList);
 
         recyclerView.setAdapter(myAdapter);
@@ -115,7 +115,7 @@ public class DetailsActivity extends AppCompatActivity {
                 }
                 for(DocumentChange dc : value.getDocumentChanges()){
                     if(dc.getType() == DocumentChange.Type.ADDED){
-                        userDataArrayList.add(dc.getDocument().toObject(UserData.class));
+                        userDataArrayList.add(dc.getDocument().toObject(requestModel.class));
                     }
                     myAdapter.notifyDataSetChanged();
                 }

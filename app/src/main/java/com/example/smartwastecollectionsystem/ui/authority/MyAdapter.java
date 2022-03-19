@@ -15,9 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.smartwastecollectionsystem.R;
-import com.example.smartwastecollectionsystem.ui.localuser.UserData;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.smartwastecollectionsystem.ui.localuser.requestModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -26,15 +31,11 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<UserData> userDataArrayList;
-    FirebaseFirestore firestore;
-    FirebaseAuth auth;
+    ArrayList<requestModel> userDataArrayList;
 
-    public MyAdapter(Context context, ArrayList<UserData> userDataArrayList) {
+    public MyAdapter(Context context, ArrayList<requestModel> userDataArrayList) {
         this.context = context;
         this.userDataArrayList = userDataArrayList;
-        firestore = FirebaseFirestore.getInstance();
-        auth = FirebaseAuth.getInstance();
     }
 
     @NonNull
@@ -49,18 +50,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
 
-        UserData userData = userDataArrayList.get(position);
+        requestModel requestmodel = userDataArrayList.get(position);
 
-        final UserData temp= userDataArrayList.get(position);
+        final requestModel temp= userDataArrayList.get(position);
 
-        holder.Address.setText(userData.getAddress());
-        holder.Category_waste.setText(userData.getCategory());
-        holder.Latitude.setText(userData.getLatitude()+"");
-        holder.Longitude.setText(userData.getLongitude()+"");
+        holder.Address.setText(requestmodel.getAddress());
+        holder.Category_waste.setText(requestmodel.getCategory());
+        holder.Latitude.setText(requestmodel.getLatitude()+"");
+        holder.Longitude.setText(requestmodel.getLongitude()+"");
+        holder.usereid_.setText(requestmodel.getEmail());
         Glide.with(holder.imageurl.getContext()).load(userDataArrayList.get(position).getImageurl()).into(holder.imageurl);
 
         holder.Lat = holder.Latitude.getText().toString();
         holder.Lon = holder.Longitude.getText().toString();
+
+        holder.Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.USEREID = holder.usereid_.getText().toString();
+                holder.DeleteData(holder.USEREID);
+                notifyDataSetChanged();
+            }
+        });
 
         holder.Address.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +83,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 context.startActivity(mapIntent);
             }
         });
-
 
         holder.viewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +103,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 context.startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -101,11 +110,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return userDataArrayList.size();
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-
-        TextView Address, Category_waste, emailID, phonenumber, Latitude, Longitude, rdate, rtime, tok;
-        ImageView imageurl;
+        
+        private FirebaseFirestore db;
+        TextView Address, Category_waste, emailID, phonenumber, Latitude, Longitude, rdate, rtime, tok, usereid_;
+        ImageView imageurl, Delete;
         CircularProgressButton viewDetails;
-        String Lat, Lon;
+        String Lat, Lon, USEREID;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -113,9 +123,46 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             Address = itemView.findViewById(R.id.addr);
             Category_waste = itemView.findViewById(R.id.waste_category);
             viewDetails = itemView.findViewById(R.id.cirDetailsButton);
+            usereid_ = itemView.findViewById(R.id.user_id);
             imageurl = (ImageView)itemView.findViewById(R.id.imageView);
             Latitude = itemView.findViewById(R.id.lati);
             Longitude = itemView.findViewById(R.id.longi);
+            Delete = itemView.findViewById(R.id.card_delete);
+            db = FirebaseFirestore.getInstance();
+        }
+
+        public void DeleteData(String userid) {
+
+            db.collection("requestList")
+                    .whereEqualTo("email",USEREID)
+                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                    if(task.isSuccessful() && !task.getResult().isEmpty()){
+                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                        String documentID = documentSnapshot.getId();
+                        db.collection("requestList")
+                                .document(documentID)
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                      Toast.makeText(viewDetails.getContext(), "Request deleted successfully", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                            }
+                        });
+
+                    }else {
+
+                    }
+
+                }
+            });
         }
     }
 }

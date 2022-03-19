@@ -77,6 +77,12 @@
                 android:hint="not known"
                 android:textSize="12sp" />
 
+            <TextView
+                android:id="@+id/user_id"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="userid"/>
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                 android:id="@+id/cirDetailsButton"
@@ -96,7 +102,7 @@
 
 
             <ImageView
-                android:id="@+id/location_detail"
+                android:id="@+id/card_delete"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_below="@+id/imageView"
