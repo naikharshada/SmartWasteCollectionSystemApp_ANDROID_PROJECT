@@ -14,12 +14,14 @@ public class UserData {
     private String imageurl;
     private String requestTime;
     private String requestDate;
+    private String userToken;
+    private String msg;
 
     public UserData() {
     }
 
 
-    public UserData(String userId, String username, String email, String phone, String password, String category, float longitude, float latitude, String address, String locality, String imageurl, String requestTime, String requestDate) {
+    public UserData(String userId, String username, String email, String phone, String password, String category, float longitude, float latitude, String address, String locality, String imageurl, String requestTime, String requestDate, String userToken, String msg) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -33,6 +35,8 @@ public class UserData {
         this.imageurl = imageurl;
         this.requestTime = requestTime;
         this.requestDate = requestDate;
+        this.userToken = userToken;
+        this.msg = msg;
     }
 
     public String getUserId() {
@@ -137,6 +141,22 @@ public class UserData {
 
     public void setRequestDate(String requestDate) {
         this.requestDate = requestDate;
+    }
+
+    public String getUserToken() {
+        return userToken;
+    }
+
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }
 

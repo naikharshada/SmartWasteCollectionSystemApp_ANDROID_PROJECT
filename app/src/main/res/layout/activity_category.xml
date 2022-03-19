@@ -79,6 +79,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
         </RadioGroup>
 
+
         <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
             android:id="@+id/cirSubmitButton"
             style="@style/loginButton"

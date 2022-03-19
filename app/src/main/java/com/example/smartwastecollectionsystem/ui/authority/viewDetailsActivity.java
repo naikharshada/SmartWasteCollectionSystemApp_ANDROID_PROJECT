@@ -36,7 +36,7 @@ public class viewDetailsActivity extends AppCompatActivity {
 
     private ImageView backtodetails, gotomap;
     private CircularProgressButton acceptRequest;
-    private TextView addrs, cat, eml, pho, rd, rt, latitude, longitude, branch_name, m_eid;
+    private TextView addrs, cat, eml, pho, rd, rt, latitude, longitude, branch_name, m_eid, msg;
     String La, Lo;
     private FirebaseFirestore dbroot;
     private FirebaseAuth auth;
@@ -63,6 +63,8 @@ public class viewDetailsActivity extends AppCompatActivity {
         dbroot = FirebaseFirestore.getInstance();
         branch_name = findViewById(R.id.m_name);
         m_eid = findViewById(R.id.m_id);
+        msg = findViewById(R.id.u_msg);
+        auth = FirebaseAuth.getInstance();
 
         userID = auth.getCurrentUser().getUid();
 
@@ -83,7 +85,7 @@ public class viewDetailsActivity extends AppCompatActivity {
         cat.setText(getIntent().getStringExtra("Category_waste"));
         eml.setText(getIntent().getStringExtra("emailID"));
         pho.setText(getIntent().getStringExtra("phonenumber"));
-
+        msg.setText("request already accepted");
 
         La = latitude.getText().toString();
         Lo = longitude.getText().toString();
@@ -130,17 +132,18 @@ public class viewDetailsActivity extends AppCompatActivity {
                 User.put("userMail", eml.getText().toString());
                 User.put("memail", m_eid.getText().toString());
                 User.put("BranchName", branch_name.getText().toString());
+               // User.put("msg", msg.getText().toString());
                 dbroot.collection("acceptList").add(User).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
-                      Toast.makeText(viewDetailsActivity.this, "Request accepted successfully", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(viewDetailsActivity.this, "Request accepted successfully", Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 dbroot.collection("Municipal").document(userID).collection("aList").add(User).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
-                       // Toast.makeText(viewDetailsActivity.this, "Request accepted successfully", Toast.LENGTH_SHORT).show();
+                       //Toast.makeText(viewDetailsActivity.this, "Request accepted successfully", Toast.LENGTH_SHORT).show();
                     }
                 });
 

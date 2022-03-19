@@ -224,6 +224,13 @@
                         android:layout_height="wrap_content"
                         android:text="m_Name"/>
 
+                    <TextView
+                        android:id="@+id/u_msg"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="request has been accepted"/>
+
                     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                         android:id="@+id/cirAcceptButton"
                         style="@style/loginButton"
