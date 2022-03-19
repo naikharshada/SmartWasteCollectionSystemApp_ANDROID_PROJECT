@@ -9,15 +9,21 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,6 +35,7 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 public class CategoryActivity extends AppCompatActivity {
 
     private ImageView backtomap;
+    private TextView u_id, u_ph, u_eid;
     private CircularProgressButton submit;
     private RadioGroup radioGroup;
     private FirebaseFirestore dbroot;
@@ -42,11 +49,26 @@ public class CategoryActivity extends AppCompatActivity {
         changeStatusBarColor();
 
         backtomap = findViewById(R.id.back_Map);
+        u_id = findViewById(R.id.userid);
+        u_ph = findViewById(R.id.userphone);
+        u_eid = findViewById(R.id.usermail);
         submit = findViewById(R.id.cirSubmitButton);
         radioGroup = findViewById(R.id.radiogroup);
         auth = FirebaseAuth.getInstance();
 
         dbroot = FirebaseFirestore.getInstance();
+
+        userID = auth.getCurrentUser().getUid();
+
+        DocumentReference documentReference  = dbroot.collection("Users").document(userID);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                u_id.setText(value.getString("userID"));
+                u_ph.setText(value.getString("phone"));
+                u_eid.setText(value.getString("email"));
+            }
+        });
 
         backtomap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,11 +115,22 @@ public class CategoryActivity extends AppCompatActivity {
         User.put("Category",category);
         User.put("requestTime", saveCurrentTime);
         User.put("requestDate", saveCurrentDate);
-        dbroot.collection("Users").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
+        User.put("email", u_eid.getText().toString());
+        User.put("userID", u_id.getText().toString());
+        User.put("phone", u_ph.getText().toString());
+        dbroot.collection("requestList").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getApplicationContext(), "Category Selected Successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(CategoryActivity.this, SuccessActivity.class));
+
+            }
+        });
+
+        dbroot.collection("Users").document(userID).collection("rList").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                // Toast.makeText(getApplicationContext(), "Category selected Successfully", Toast.LENGTH_SHORT).show();
 
             }
         });

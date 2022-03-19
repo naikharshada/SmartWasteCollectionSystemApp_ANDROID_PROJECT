@@ -233,10 +233,18 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
                         userID = auth.getCurrentUser().getUid();
                         Map<String,Object> User = new HashMap<>();
                         User.put("imageurl",uri.toString());
-                        dbroot.collection("Users").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        dbroot.collection("requestList").document(userID).set(User).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
                                 Toast.makeText(getApplicationContext(), "Image uploaded Successfully", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+                        dbroot.collection("Users").document(userID).collection("rList").document(userID).set(User).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                               // Toast.makeText(getApplicationContext(), "Image uploaded Successfully", Toast.LENGTH_SHORT).show();
 
                             }
                         });

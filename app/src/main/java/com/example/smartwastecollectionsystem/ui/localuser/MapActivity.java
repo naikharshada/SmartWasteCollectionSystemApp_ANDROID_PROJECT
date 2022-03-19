@@ -126,10 +126,18 @@ public class MapActivity extends AppCompatActivity {
                         User.put("Address", addressList.get(0).getAddressLine(0));
                         User.put("Longitude", addressList.get(0).getLongitude());
                         User.put("Latitude", addressList.get(0).getLatitude());
-                        dbroot.collection("Users").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        dbroot.collection("requestList").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
                                 Toast.makeText(getApplicationContext(), "Location saved Successfully", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+                        dbroot.collection("Users").document(userID).collection("rList").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                // Toast.makeText(getApplicationContext(), "Location saved Successfully", Toast.LENGTH_SHORT).show();
 
                             }
                         });

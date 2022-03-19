@@ -108,7 +108,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void EventChangeListener() {
-        db.collection("Users").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("requestList").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if(error!=null){

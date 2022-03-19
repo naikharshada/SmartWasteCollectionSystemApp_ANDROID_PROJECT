@@ -79,6 +79,27 @@
                 app:layout_constraintEnd_toEndOf="parent" />
         </RadioGroup>
 
+        <TextView
+            android:id="@+id/userid"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="userID"/>
+
+        <TextView
+            android:id="@+id/userphone"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="phone"/>
+
+        <TextView
+            android:id="@+id/usermail"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mail"/>
+
 
         <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
             android:id="@+id/cirSubmitButton"
