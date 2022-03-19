@@ -35,7 +35,7 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 public class CategoryActivity extends AppCompatActivity {
 
     private ImageView backtomap;
-    private TextView u_id, u_ph, u_eid;
+    private TextView u_id, u_ph, u_eid, u_token;
     private CircularProgressButton submit;
     private RadioGroup radioGroup;
     private FirebaseFirestore dbroot;
@@ -51,6 +51,7 @@ public class CategoryActivity extends AppCompatActivity {
         backtomap = findViewById(R.id.back_Map);
         u_id = findViewById(R.id.userid);
         u_ph = findViewById(R.id.userphone);
+        u_token = findViewById(R.id.usertoken);
         u_eid = findViewById(R.id.usermail);
         submit = findViewById(R.id.cirSubmitButton);
         radioGroup = findViewById(R.id.radiogroup);
@@ -67,6 +68,7 @@ public class CategoryActivity extends AppCompatActivity {
                 u_id.setText(value.getString("userID"));
                 u_ph.setText(value.getString("phone"));
                 u_eid.setText(value.getString("email"));
+                u_token.setText(value.getString("userToken"));
             }
         });
 
@@ -118,6 +120,7 @@ public class CategoryActivity extends AppCompatActivity {
         User.put("email", u_eid.getText().toString());
         User.put("userID", u_id.getText().toString());
         User.put("phone", u_ph.getText().toString());
+        User.put("userToken", u_token.getText().toString());
         dbroot.collection("requestList").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {

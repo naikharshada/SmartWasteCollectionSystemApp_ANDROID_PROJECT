@@ -88,6 +88,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 intent.putExtra("Category_waste", temp.getCategory());
                 intent.putExtra("emailID", temp.getEmail());
                 intent.putExtra("phonenumber",temp.getPhone());
+                intent.putExtra("tok", temp.getUserToken());
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
@@ -101,7 +102,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView Address, Category_waste, emailID, phonenumber, Latitude, Longitude, rdate, rtime;
+        TextView Address, Category_waste, emailID, phonenumber, Latitude, Longitude, rdate, rtime, tok;
         ImageView imageurl;
         CircularProgressButton viewDetails;
         String Lat, Lon;

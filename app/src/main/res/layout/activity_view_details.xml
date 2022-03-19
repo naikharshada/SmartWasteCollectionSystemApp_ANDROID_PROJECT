@@ -224,12 +224,27 @@
                         android:layout_height="wrap_content"
                         android:text="m_Name"/>
 
+
                     <TextView
-                        android:id="@+id/u_msg"
+                        android:id="@+id/tokn"
                         android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="request has been accepted"/>
+                        android:text="token"/>
+
+                    <TextView
+                        android:id="@+id/msg"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="your request has been accepted"/>
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SWCS"/>
 
                     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                         android:id="@+id/cirAcceptButton"

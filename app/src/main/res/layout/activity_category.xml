@@ -100,6 +100,13 @@
             android:layout_height="wrap_content"
             android:text="mail"/>
 
+        <TextView
+            android:id="@+id/usertoken"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="token"/>
+
 
         <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
             android:id="@+id/cirSubmitButton"

@@ -38,7 +38,7 @@
         <activity
             android:name=".ui.localuser.SuccessActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.localuser.About_usActivity"
             android:exported="false" />
@@ -135,6 +135,16 @@
         <activity
             android:name=".ui.localuser.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name=".FirebaseMessagingService"
+            android:exported="true"
+            android:permission="TODO">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

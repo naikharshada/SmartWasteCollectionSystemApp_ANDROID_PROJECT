@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smartwastecollectionsystem.FcmNotificationsSender;
 import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,7 +37,7 @@ public class viewDetailsActivity extends AppCompatActivity {
 
     private ImageView backtodetails, gotomap;
     private CircularProgressButton acceptRequest;
-    private TextView addrs, cat, eml, pho, rd, rt, latitude, longitude, branch_name, m_eid, msg;
+    private TextView addrs, cat, eml, pho, rd, rt, latitude, longitude, branch_name, m_eid, msg, token, title;
     String La, Lo;
     private FirebaseFirestore dbroot;
     private FirebaseAuth auth;
@@ -63,7 +64,9 @@ public class viewDetailsActivity extends AppCompatActivity {
         dbroot = FirebaseFirestore.getInstance();
         branch_name = findViewById(R.id.m_name);
         m_eid = findViewById(R.id.m_id);
-        msg = findViewById(R.id.u_msg);
+        msg = findViewById(R.id.msg);
+        token = findViewById(R.id.tokn);
+        title = findViewById(R.id.title);
         auth = FirebaseAuth.getInstance();
 
         userID = auth.getCurrentUser().getUid();
@@ -84,8 +87,8 @@ public class viewDetailsActivity extends AppCompatActivity {
         rt.setText(getIntent().getStringExtra("rtime"));
         cat.setText(getIntent().getStringExtra("Category_waste"));
         eml.setText(getIntent().getStringExtra("emailID"));
+        token.setText(getIntent().getStringExtra("tok"));
         pho.setText(getIntent().getStringExtra("phonenumber"));
-        msg.setText("request already accepted");
 
         La = latitude.getText().toString();
         Lo = longitude.getText().toString();
@@ -111,6 +114,12 @@ public class viewDetailsActivity extends AppCompatActivity {
         acceptRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token.getText().toString(),
+                        title.getText().toString(),msg.getText().toString(),
+                        getApplicationContext(),viewDetailsActivity.this);
+                notificationsSender.SendNotifications();
+
                 acceptRequest.setEnabled(true);
                 acceptRequest.setEnabled(false);
 
@@ -132,7 +141,6 @@ public class viewDetailsActivity extends AppCompatActivity {
                 User.put("userMail", eml.getText().toString());
                 User.put("memail", m_eid.getText().toString());
                 User.put("BranchName", branch_name.getText().toString());
-               // User.put("msg", msg.getText().toString());
                 dbroot.collection("acceptList").add(User).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {

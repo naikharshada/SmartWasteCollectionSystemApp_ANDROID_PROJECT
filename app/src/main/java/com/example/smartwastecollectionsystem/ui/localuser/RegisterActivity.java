@@ -23,6 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView signin_btn;
     private FirebaseAuth auth;
     private FirebaseFirestore dbroot;
-    String userID;
+    String userID, token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,16 @@ public class RegisterActivity extends AppCompatActivity {
         signin_btn = findViewById(R.id.sign_in);
         auth = FirebaseAuth.getInstance();
         dbroot = FirebaseFirestore.getInstance();
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+
+                    if(!task.isSuccessful()){
+                        return;
+                    }
+
+                    token = task.getResult();
+                });
 
         signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,35 +117,6 @@ public class RegisterActivity extends AppCompatActivity {
         auth.createUserWithEmailAndPassword(email_, password_).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-               /* if (task.isSuccessful()) {
-                    FirebaseUser rUser = auth.getCurrentUser();
-                    assert rUser != null;
-                    String userId = rUser.getUid();
-                    databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
-                    HashMap<String, String> hashMap = new HashMap<>();
-                    hashMap.put("userID", userId);
-                    hashMap.put("username", fullname_);
-                    hashMap.put("email", email_);
-                    hashMap.put("phone", phonenumber_);
-                    hashMap.put("password", password_);
-                    databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this,"Registered Successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-
-                            } else {
-                                Toast.makeText(RegisterActivity.this, (task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                } else {
-                    Toast.makeText(RegisterActivity.this,  (task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-
-                }*/
 
                 userID = auth.getCurrentUser().getUid();
                 DocumentReference documentReference = dbroot.collection("Users").document(userID);
@@ -144,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
                 User.put("email", email_);
                 User.put("phone", phonenumber_);
                 User.put("password", password_);
-
+                User.put("userToken", token);
                 documentReference.set(User).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -154,11 +136,9 @@ public class RegisterActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-
             }
         });
     }
-
 
     private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

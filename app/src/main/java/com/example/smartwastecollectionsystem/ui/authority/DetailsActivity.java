@@ -102,9 +102,7 @@ public class DetailsActivity extends AppCompatActivity {
                 }
                 return false;
             }
-
         });
-
     }
 
     private void EventChangeListener() {
