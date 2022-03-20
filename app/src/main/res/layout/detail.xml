@@ -20,20 +20,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/text_msg"
+                android:layout_width="200dp"
+                android:layout_height="22dp"
+                android:textAlignment="center"
+                style="@style/viewParent.headerText.NoMode"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/status"
+                android:textColor="#6cba46"
+                android:hint="Pending Request"
+                android:textSize="15sp" />
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="118dp"
                 android:layout_height="118dp"
+                android:layout_below="@id/text_msg"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 tools:srcCompat="@drawable/ic_launcher_background" />
 
             <TextView
                 android:id="@+id/text_loc"
                 style="@style/viewParent.headerText.NoMode"
+                android:layout_below="@id/text_msg"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="120dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:text="Waste location: "
                 android:textSize="12sp" />
 

@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.smartwastecollectionsystem.FcmNotificationsSender;
 import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -25,6 +27,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,7 +44,7 @@ public class viewDetailsActivity extends AppCompatActivity {
     String La, Lo;
     private FirebaseFirestore dbroot;
     private FirebaseAuth auth;
-    String userID;
+    String userID, userEID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +123,9 @@ public class viewDetailsActivity extends AppCompatActivity {
                         getApplicationContext(),viewDetailsActivity.this);
                 notificationsSender.SendNotifications();
 
+                userEID = eml.getText().toString();
+                UpdateData(userEID);
+
                 acceptRequest.setEnabled(true);
                 acceptRequest.setEnabled(false);
 
@@ -159,6 +165,41 @@ public class viewDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void UpdateData(String userEID) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("msg","Request already Accepted");
+
+        dbroot.collection("requestList")
+                .whereEqualTo("email", userEID)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful() && !task.getResult().isEmpty()){
+                    DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                    String documentID = documentSnapshot.getId();
+                    dbroot.collection("requestList")
+                            .document(documentID)
+                            .update(map)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            });
+                }else {
+
+                }
+            }
+        });
+    }
+
     private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

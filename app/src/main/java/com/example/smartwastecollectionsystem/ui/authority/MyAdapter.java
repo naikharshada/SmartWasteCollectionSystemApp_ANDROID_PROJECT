@@ -57,6 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.Address.setText(requestmodel.getAddress());
         holder.Category_waste.setText(requestmodel.getCategory());
         holder.Latitude.setText(requestmodel.getLatitude()+"");
+        holder.status.setText(requestmodel.getMsg());
         holder.Longitude.setText(requestmodel.getLongitude()+"");
         holder.usereid_.setText(requestmodel.getEmail());
         Glide.with(holder.imageurl.getContext()).load(userDataArrayList.get(position).getImageurl()).into(holder.imageurl);
@@ -112,7 +113,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         
         private FirebaseFirestore db;
-        TextView Address, Category_waste, emailID, phonenumber, Latitude, Longitude, rdate, rtime, tok, usereid_;
+        TextView Address, Category_waste, emailID, phonenumber, Latitude, Longitude, rdate, rtime, tok, usereid_, status;
         ImageView imageurl, Delete;
         CircularProgressButton viewDetails;
         String Lat, Lon, USEREID;
@@ -127,6 +128,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             imageurl = (ImageView)itemView.findViewById(R.id.imageView);
             Latitude = itemView.findViewById(R.id.lati);
             Longitude = itemView.findViewById(R.id.longi);
+            status = itemView.findViewById(R.id.text_msg);
             Delete = itemView.findViewById(R.id.card_delete);
             db = FirebaseFirestore.getInstance();
         }
