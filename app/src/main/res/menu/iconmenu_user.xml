@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_description"
             android:title="Feed"/>
 
+        <item android:id="@+id/menu_feedback"
+            android:icon="@drawable/ic_feedback"
+            android:title="Send Feedback"/>
+
         <item android:id="@+id/menu_aboutus"
             android:icon="@drawable/ic_info"
             android:title="About Us"/>

@@ -1,11 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/login_bk_color"
+    android:focusableInTouchMode="true"
+    android:layout_gravity="center"
+    android:gravity="center"
     tools:context=".ui.localuser.About_usActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/register_bk_color"
+            app:title="About Us"
+            app:titleTextColor="@color/login_bk_color" />
+
+            <TextView
+                style="@style/viewParent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="13dp"
+                android:lineSpacingExtra="5sp"
+                android:text="Hey there, \n\nPeople face problems regarding unwanted garbage found at unnecessary places. Here is a basic solution we tried to implement to improve these scattered garbage problems at blind spots.
+                \n\nThis app is a waste management application known as smart waste collection system. The growing issue of waste at unwanted places (roads, footpaths, parks, etc.) can be solved easily through this application.
+                \n\nHere is an easy way for you to contact with the municipal authority and let them know about a garbage or waste which is in a blind spot/ corner area which cannot be located by the garbage collection authority.
+                \n\nYou just have to :
+                \n 1. Click a picture of the garbage
+                \n 2. Enter garbage location
+                \n 3. Select category of the garbage"
+                android:textSize="20sp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+
+</ScrollView>
+
+    <View
+        android:layout_width="11dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_side_bg" />
+
+
+
+</RelativeLayout>

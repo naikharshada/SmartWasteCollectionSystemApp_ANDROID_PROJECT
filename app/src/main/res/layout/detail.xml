@@ -22,16 +22,16 @@
 
             <TextView
                 android:id="@+id/text_msg"
-                android:layout_width="200dp"
-                android:layout_height="22dp"
-                android:textAlignment="center"
                 style="@style/viewParent.headerText.NoMode"
+                android:layout_width="185dp"
+                android:layout_height="22dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="120dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/status"
-                android:textColor="#6cba46"
                 android:hint="Pending Request"
+                android:textAlignment="center"
+                android:textColor="#6cba46"
                 android:textSize="15sp" />
 
             <ImageView
@@ -40,7 +40,7 @@
                 android:layout_height="118dp"
                 android:layout_below="@id/text_msg"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 tools:srcCompat="@drawable/ic_launcher_background" />
 
             <TextView
@@ -49,18 +49,18 @@
                 android:layout_below="@id/text_msg"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="120dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:text="Waste location: "
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/text_info"
                 style="@style/viewParent"
-                android:textColor="@color/black"
                 android:layout_below="@id/text_loc"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="120dp"
                 android:text="(Click on address to view map)"
+                android:textColor="@color/black"
                 android:textSize="12sp" />
 
             <TextView

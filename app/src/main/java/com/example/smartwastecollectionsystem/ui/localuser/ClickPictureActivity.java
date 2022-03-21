@@ -114,6 +114,11 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
                         startActivity(intent2);
                         break;
 
+                    case R.id.menu_feedback:
+                        Intent intent4 = new Intent(ClickPictureActivity.this, FeedbackActivity.class);
+                        startActivity(intent4);
+                        break;
+
 
                     case R.id.menu_aboutus:
                         Intent intent3 = new Intent(ClickPictureActivity.this, About_usActivity.class);
