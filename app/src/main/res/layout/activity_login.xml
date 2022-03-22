@@ -32,8 +32,8 @@
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:textSize="20sp"
-                    android:text="Hello, User! \n\nAlready \nhave an \nAccount?" />
+                    android:text="Hello, User! \n\nAlready \nhave an \nAccount?"
+                    android:textSize="20sp" />
 
                 <ImageView
                     android:layout_width="179dp"
