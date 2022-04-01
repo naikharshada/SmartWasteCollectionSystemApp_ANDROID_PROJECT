@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:id="@+id/activity"
     android:background="@color/login_bk_color"
     tools:context=".ui.localuser.SuccessActivity">
 
@@ -12,6 +13,6 @@
         android:id="@+id/done"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:src="@drawable/success1"/>
+        android:src="@drawable/success"/>
 
 </LinearLayout>

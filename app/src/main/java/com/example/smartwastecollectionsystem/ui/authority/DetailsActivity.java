@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.smartwastecollectionsystem.R;
 import com.example.smartwastecollectionsystem.ui.localuser.requestModel;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,6 +40,7 @@ public class DetailsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
    ArrayList<requestModel> userDataArrayList;
     MyAdapter myAdapter;
+    private FirebaseAuth mauth;
     FirebaseFirestore db;
 
 
@@ -48,6 +50,7 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         changeStatusBarColor();
 
+        mauth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -151,10 +154,13 @@ public class DetailsActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 //DetailsActivity.this.finishAffinity();
                 Toast.makeText(DetailsActivity.this, "Logout Successful", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(DetailsActivity.this, Login1Activity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-               // System.exit(0);
+                startActivity(new Intent(DetailsActivity.this, Login1Activity.class));
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                //startActivity(intent);
+                mauth.signOut();
+                finish();
+
+                // System.exit(0);
             }
         });
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {

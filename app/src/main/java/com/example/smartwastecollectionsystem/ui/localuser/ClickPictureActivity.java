@@ -31,6 +31,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.smartwastecollectionsystem.LoginAsActivity;
 import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -170,9 +171,12 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
             public void onClick(DialogInterface dialogInterface, int i) {
                 //DetailsActivity.this.finishAffinity();
                 Toast.makeText(ClickPictureActivity.this, "Logout Successful", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ClickPictureActivity.this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                startActivity(new Intent(ClickPictureActivity.this, LoginActivity.class));
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                //startActivity(intent);
+                auth.signOut();
+                finish();
+
                 // System.exit(0);
             }
         });

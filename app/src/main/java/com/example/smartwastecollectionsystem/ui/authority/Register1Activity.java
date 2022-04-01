@@ -35,7 +35,7 @@ public class Register1Activity extends AppCompatActivity {
     private TextInputLayout branchname_var, memail_var, mphonenumber_var, mpassword_var;
     private CircularProgressButton registerbtn;
     private TextView signin_btn;
-    private FirebaseAuth auth;
+    private FirebaseAuth mauth;
     private FirebaseFirestore dbroot;
     String userID;
 
@@ -45,14 +45,21 @@ public class Register1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_register1);
         changeStatusBarColor();
 
+
         branchname_var = findViewById(R.id.textInputName);
         memail_var = findViewById(R.id.textInputEmail);
         mphonenumber_var = findViewById(R.id.textInputMobile);
         mpassword_var = findViewById(R.id.textInputPassword);
         registerbtn = findViewById(R.id.cirRegisterButton);
         signin_btn = findViewById(R.id.sign_in);
-        auth = FirebaseAuth.getInstance();
+        mauth = FirebaseAuth.getInstance();
         dbroot = FirebaseFirestore.getInstance();
+
+        if (mauth.getCurrentUser() != null) {
+            //there is some one user logged in
+            startActivity(new Intent(Register1Activity.this, DetailsActivity.class));
+            finish();
+        }
 
         signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,11 +107,11 @@ public class Register1Activity extends AppCompatActivity {
     }
 
     private void register(String branchname_, String memail_, String mphonenumber_, String mpassword_) {
-        auth.createUserWithEmailAndPassword(memail_ , mpassword_).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mauth.createUserWithEmailAndPassword(memail_ , mpassword_).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                userID = auth.getCurrentUser().getUid();
+                userID = mauth.getCurrentUser().getUid();
                 DocumentReference documentReference = dbroot.collection("Municipal").document(userID);
                 Map<String,Object> User = new HashMap<>();
                 User.put("userID", userID);

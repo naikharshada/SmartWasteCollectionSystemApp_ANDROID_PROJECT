@@ -16,7 +16,6 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-
     <ImageView
         android:id="@+id/image_logo"
         android:layout_width="179dp"
@@ -39,6 +38,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </LinearLayout>
-
 
 </RelativeLayout>

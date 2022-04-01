@@ -51,6 +51,12 @@ public class LoginActivity extends AppCompatActivity {
         forgotpassbtn = findViewById(R.id.for_pass);
         auth = FirebaseAuth.getInstance();
 
+        if (auth.getCurrentUser() != null) {
+            //there is some one user logged in
+            startActivity(new Intent(LoginActivity.this, ClickPictureActivity.class));
+            finish();
+        }
+
         signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -56,6 +56,12 @@ public class RegisterActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         dbroot = FirebaseFirestore.getInstance();
 
+        if (auth.getCurrentUser() != null) {
+            //there is some one user logged in
+            startActivity(new Intent(RegisterActivity.this, ClickPictureActivity.class));
+            finish();
+        }
+
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(task -> {
 

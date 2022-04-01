@@ -1,13 +1,13 @@
 package com.example.smartwastecollectionsystem;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartwastecollectionsystem.ui.authority.Login1Activity;
 import com.example.smartwastecollectionsystem.ui.localuser.LoginActivity;
@@ -26,6 +26,7 @@ public class LoginAsActivity extends AppCompatActivity {
 
         localbtn = findViewById(R.id.cirLocalButton);
         municipalbtn = findViewById(R.id.cirAuthButton);
+
 
         localbtn.setOnClickListener(new View.OnClickListener() {
             @Override

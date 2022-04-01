@@ -33,7 +33,7 @@ public class Login1Activity extends AppCompatActivity {
     private CircularProgressButton loginbtn;
     private TextView signup_btn, forgotpassbtn;
     private ImageView loginAs_;
-    private FirebaseAuth auth;
+    private FirebaseAuth mauth;
     private DatabaseReference databaseReference;
 
     @Override
@@ -42,13 +42,20 @@ public class Login1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_login1);
         changeStatusBarColor();
 
+
         memail_var = findViewById(R.id.textEmail);
         mpassword_var = findViewById(R.id.textPassword);
         loginbtn = findViewById(R.id.cirLoginButton);
         signup_btn = findViewById(R.id.sign_up);
         forgotpassbtn = findViewById(R.id.for_pass);
         loginAs_ = findViewById(R.id.back_loginAs);
-        auth = FirebaseAuth.getInstance();
+        mauth = FirebaseAuth.getInstance();
+
+        if (mauth.getCurrentUser() != null) {
+            //there is some one user logged in
+            startActivity(new Intent(Login1Activity.this, DetailsActivity.class));
+            finish();
+        }
 
         signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +105,7 @@ public class Login1Activity extends AppCompatActivity {
     }
 
     private void login(String memail_, String mpassword_) {
-        auth.signInWithEmailAndPassword(memail_, mpassword_).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mauth.signInWithEmailAndPassword(memail_, mpassword_).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
