@@ -1,21 +1,19 @@
 package com.example.smartwastecollectionsystem;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
     private static int splash_screen = 5000;
 
-    ImageView logo;
-    TextView Appname;
+   // ImageView logo;
+   // TextView Appname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +21,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         changeStatusBarColor();
 
-        logo = findViewById(R.id.image_logo);
-        Appname = findViewById(R.id.appname_);
+       // logo = findViewById(R.id.image_logo);
+        //Appname = findViewById(R.id.appname_);
 
         new Handler().postDelayed(new Runnable() {
             @Override
