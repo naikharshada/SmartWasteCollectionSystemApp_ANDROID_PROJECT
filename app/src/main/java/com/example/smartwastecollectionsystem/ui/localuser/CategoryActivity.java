@@ -94,8 +94,6 @@ public class CategoryActivity extends AppCompatActivity {
                     snackbar.show();
                 } else {
                     final String category = selected_category.getText().toString();
-                    //Toast.makeText(getApplicationContext(), category, Toast.LENGTH_SHORT).show();
-                    //insertdata();
                     send(category);
                 }
             }
@@ -133,7 +131,6 @@ public class CategoryActivity extends AppCompatActivity {
         dbroot.collection("Users").document(userID).collection("rList").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                // Toast.makeText(getApplicationContext(), "Category selected Successfully", Toast.LENGTH_SHORT).show();
 
             }
         });

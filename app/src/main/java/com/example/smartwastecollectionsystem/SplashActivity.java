@@ -12,17 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SplashActivity extends AppCompatActivity {
     private static int splash_screen = 5000;
 
-   // ImageView logo;
-   // TextView Appname;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         changeStatusBarColor();
-
-       // logo = findViewById(R.id.image_logo);
-        //Appname = findViewById(R.id.appname_);
 
         new Handler().postDelayed(new Runnable() {
             @Override

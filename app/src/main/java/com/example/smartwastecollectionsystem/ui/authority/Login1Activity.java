@@ -52,7 +52,6 @@ public class Login1Activity extends AppCompatActivity {
         mauth = FirebaseAuth.getInstance();
 
         if (mauth.getCurrentUser() != null) {
-            //there is some one user logged in
             startActivity(new Intent(Login1Activity.this, DetailsActivity.class));
             finish();
         }

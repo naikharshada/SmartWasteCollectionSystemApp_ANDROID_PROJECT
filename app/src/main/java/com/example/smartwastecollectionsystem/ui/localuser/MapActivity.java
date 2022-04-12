@@ -92,7 +92,6 @@ public class MapActivity extends AppCompatActivity {
                     showLocation();
                 else
                     ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-                    //requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100);
             }
         });
     }
@@ -137,17 +136,9 @@ public class MapActivity extends AppCompatActivity {
                         dbroot.collection("Users").document(userID).collection("rList").document(userID).update(User).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                // Toast.makeText(getApplicationContext(), "Location saved Successfully", Toast.LENGTH_SHORT).show();
 
                             }
                         });
-
-                       /* databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("Address").setValue(textadd.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(getApplicationContext(), "Location saved successfully", Toast.LENGTH_SHORT).show();
-                            }
-                        });*/
 
                     } catch(IOException e){
                         e.printStackTrace();
@@ -156,23 +147,11 @@ public class MapActivity extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(MapActivity.this, "Location null error", Toast.LENGTH_SHORT).show();
-                   // requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100);
                 }
 
             }
         });
     }
-
-   /* @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == 100 && (grantResults.length > 0) &&
-                (grantResults[0] + grantResults[1] == PackageManager.PERMISSION_GRANTED )) {
-            showLocation();
-        } else {
-            Toast.makeText(MapActivity.this, "Location permission is required", Toast.LENGTH_SHORT).show();
-        }
-    }*/
 
     private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

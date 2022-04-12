@@ -52,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() != null) {
-            //there is some one user logged in
             startActivity(new Intent(LoginActivity.this, ClickPictureActivity.class));
             finish();
         }

@@ -56,7 +56,6 @@ public class Register1Activity extends AppCompatActivity {
         dbroot = FirebaseFirestore.getInstance();
 
         if (mauth.getCurrentUser() != null) {
-            //there is some one user logged in
             startActivity(new Intent(Register1Activity.this, DetailsActivity.class));
             finish();
         }

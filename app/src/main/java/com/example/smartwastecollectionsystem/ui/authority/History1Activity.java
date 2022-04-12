@@ -49,10 +49,6 @@ public class History1Activity extends AppCompatActivity {
         recyclerView.setAdapter(myAdapter);
 
         EventChangeListener();
-
-        // getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back_img);
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     private void EventChangeListener() {

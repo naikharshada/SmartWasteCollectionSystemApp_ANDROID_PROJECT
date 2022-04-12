@@ -10,12 +10,6 @@
     android:gravity="center"
     tools:context=".ui.localuser.FeedbackActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,7 +73,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
 
     <View
         android:layout_width="11dp"

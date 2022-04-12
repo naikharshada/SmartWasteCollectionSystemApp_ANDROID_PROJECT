@@ -125,24 +125,6 @@ public class DetailsActivity extends AppCompatActivity {
 
             }
         });
-
-      /*  databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    UserData userdata = dataSnapshot.getValue(UserData.class);
-                    List.add(userdata);
-                }
-                myAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-
-            }
-        });*/
-
     }
 
     private void logout(NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener) {
@@ -152,15 +134,10 @@ public class DetailsActivity extends AppCompatActivity {
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //DetailsActivity.this.finishAffinity();
                 Toast.makeText(DetailsActivity.this, "Logout Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(DetailsActivity.this, Login1Activity.class));
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                //startActivity(intent);
                 mauth.signOut();
                 finish();
-
-                // System.exit(0);
             }
         });
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {

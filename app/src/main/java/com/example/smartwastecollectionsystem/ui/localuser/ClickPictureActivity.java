@@ -31,7 +31,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.smartwastecollectionsystem.LoginAsActivity;
 import com.example.smartwastecollectionsystem.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -169,15 +168,10 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //DetailsActivity.this.finishAffinity();
                 Toast.makeText(ClickPictureActivity.this, "Logout Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(ClickPictureActivity.this, LoginActivity.class));
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                //startActivity(intent);
                 auth.signOut();
                 finish();
-
-                // System.exit(0);
             }
         });
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -238,7 +232,6 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.get().load(uri).into(selectedImage);
-                      // databaseReference.getRef().child("Users").child(FirebaseAuth.getInstance().getUid()).child("imageUrl").setValue(contentUri.toString());
                         userID = auth.getCurrentUser().getUid();
                         Map<String,Object> User = new HashMap<>();
                         User.put("imageurl",uri.toString());
@@ -253,15 +246,12 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
                         dbroot.collection("Users").document(userID).collection("rList").document(userID).set(User).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                               // Toast.makeText(getApplicationContext(), "Image uploaded Successfully", Toast.LENGTH_SHORT).show();
+
 
                             }
                         });
                     }
                 });
-              //Toast.makeText(ClickPictureActivity.this, "Image is uploaded", Toast.LENGTH_SHORT).show();
-
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -282,7 +272,6 @@ public class ClickPictureActivity extends AppCompatActivity implements OnRequest
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        //File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
